@@ -4,13 +4,6 @@
   position: relative;
 }
 
-#dp-img {
-  width: 25vw;
-  border: white;
-  border-radius: 1000px;
-  border-style: solid;
-}
-
 .contact-img {
   max-height: 3vh;
 }

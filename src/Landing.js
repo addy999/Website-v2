@@ -1,6 +1,6 @@
 import React from 'react';
 
-import dp from './assests/dp.jpg';
+import Dp from './dp';
 import github from './assests/github.png';
 import linkedin from './assests/linkedin.gif';
 import email from './assests/email.png';
@@ -25,9 +25,9 @@ function Landing({stars}) {
 
       <header className="header row">
 
-        <figure id="dp" className="col">
-          <img id="dp-img" src={dp} alt="dp"></img>
-        </figure>
+        <div className="col">
+          <Dp />
+        </div>
         <div id="desc" className="col">
           <h1 className="display-4">
             Addy <span className="blue">Bhatia</span>

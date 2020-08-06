@@ -10,7 +10,7 @@ class Projects extends React.Component {
     render() {
 
         const style = {
-            "padding": "5vh 2vw 5rem 2vw",
+            "padding": "3vw 3vw 5rem",
             "position" : "relative",
             "background": "radial-gradient(ellipse at bottom, #12181a 0%, #090a0f 100%)",
             "color": "white",
