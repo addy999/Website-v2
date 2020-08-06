@@ -11,3 +11,30 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* html {
+    overflow: hidden;
+} */
+
+::-moz-selection {
+  color: #ebf8f1;
+  background: #96FFF2;
+}
+
+::selection {
+  color: #ebf8f1;
+  background: #96FFF2;
+}
+
+.blue {
+  color: #96FFF2;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+body {
+  position: relative!important;
+  overflow: auto!important;
+}

@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+
+import './css/index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+
+import Landing from './Landing';
+import Projects from './Projects';
+import Footer from './Footer';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Landing stars={false} />
+    <Projects panels={["Work", "Side Projects", "Learning by doing"]} />
+    <Footer />
+    {/* <Panel title="Work"/>
+    <Panel title="Side Projects"/>
+    <Panel title="Learning by doing"/> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
