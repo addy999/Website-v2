@@ -1,0 +1,64 @@
+.Landing {
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+#dp-img {
+  width: 25vw;
+  border: white;
+  border-radius: 1000px;
+  border-style: solid;
+}
+
+.contact-img {
+  max-height: 3vh;
+}
+
+.desc-text {
+  font-size: 1.1rem;
+}
+
+.butt {
+  max-width: 30vw;
+  margin: auto;
+}
+
+.btn {
+  margin-right: 10px;
+  max-width: 10vw;
+  /* margin: auto; */
+}
+
+/* .App-logo {
+  height: 40vmin;
+  pointer-events: none;
+} */
+
+/* @media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  } 
+} */
+
+.header {
+  /* background-color: #282c34; */
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  min-height: 100vh;
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 0 10vw 0 10vw;
+}
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
