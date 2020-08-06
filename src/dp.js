@@ -1,60 +1,102 @@
 import React, {Component} from 'react';
-import dp_pic from './assests/dp.jpg';
 import './css/dp.css';
+
+import dp_pic from './assests/dp.jpg';
+import grad from './assests/grad.png';
+import teaching from './assests/teaching.jpg';
+import loft from './assests/loft.jpg';
 
 class Dp extends React.Component {
 
     constructor(props) {
       super(props);
-    //   this.state = {
-    //       ""
-    //   }
 
+      this.state = {mouseover : false};
+
+      this.base_collage_style = {
+          "position" : "absolute",
+          "border-radius" : "1000px",
+          "transition": "all 0.75s ease-in-out",
+          "z-index" : "5",
+          "width" : "250px",
+          "height" : "250px",
+          "border" : "#96FFF2",
+          'border-style' : 'solid',
+
+      };
+
+      this.before_transform = {
+              "top" : "50%",
+              "left" : "50%",
+              "transform" : "translate(-50%, -50%)",
+              "opacity" : 0,
+       };
+
+      this.after_transform = [
+          {
+              "top" : "-15%",
+              "left" : "50%",
+              "transform" : "translateX(-50%)",
+              "opacity" : 1,
+          }, 
+          {
+            "top" : "55%",
+            "left" : "0%",
+            "opacity" : 1,
+        }, 
+        {
+            "top" : "55%",
+            "right" : "0%",
+            "opacity" : 1,
+      }];
+
+      this.dp_img_style = {
+          'width': '25vw',
+          'border': 'white',
+          'border-radius': '1000px',
+          'border-style': 'solid',
+          "transition": "all 0.75s ease-in-out",
+          "z-index" : "0",
+          "position" : "relative"
+        };
     }
 
+    get_collage_style = (i) => {     
+        if(this.state.mouseover){
+            var style = { ...this.base_collage_style, ...this.after_transform[i] };  
+        }
+        else {
+            var style = { ...this.base_collage_style, ...this.before_transform };  
+        }
+        return style;
+    }
 
+    get_dp_style = () => {     
+        if(this.state.mouseover){
+            var style = { ...this.dp_img_style, ...{"filter" : "brightness(50%)"} };  
+        }
+        else {
+            var style = { ...this.dp_img_style, ...{"filter" : "brightness(100%)"} };  
+        }
+        return style;
+    }
 
     render() {
 
-        const dp_img = {
-            'width': '25vw',
-            'border': 'white',
-            'border-radius': '1000px',
-            'border-style': 'solid',
-        };
-
         const placeholder = "https://via.placeholder.com/250";
 
-        const before_transform_1 = {
-            "transform" : "translate(-50px, -150px)"
-        };
-        const before_transform_2 = {
-            "transform" : "translate(250px, -150px)"
-        };
-        const before_transform_3 = {
-            "transform" : "translate(100px, 150px)"
-        };
-
         return (
-            <>
+            <figure style={{"width": "fit-content", "margin": "auto"}} onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}>
 
-            {/* Overlay */}
+                {/* Collage overlay */}
+                <img style={this.get_collage_style(0)} src={grad}></img>
+                <img style={this.get_collage_style(1)} src={loft}></img>
+                <img style={this.get_collage_style(2)} src={teaching}></img> 
 
-            <div style={{
-                "position" : "absolute",
-                
-                }}>
-                <img style={before_transform_1} className="collage-img" src={placeholder}></img>
-                <img style={before_transform_2} className="collage-img" src={placeholder}></img>
-                <img style={before_transform_3} className="collage-img" src={placeholder}></img>                
-            </div>
+                {/* Actual DP */}
+                <img style={this.get_dp_style()} src={dp_pic} alt="dp"></img>
 
-
-            <figure>
-                <img style={dp_img} src={dp_pic} alt="dp"></img>
             </figure>
-
-            </>
         );
     }
 }
