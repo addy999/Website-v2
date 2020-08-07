@@ -1,0 +1,35 @@
+import React from 'react';
+import './css/card.css';
+
+class Card extends React.Component {
+
+    constructor(props) {
+      super(props);
+    }
+
+    render() {
+
+      const {data} = this.props;
+
+      return (
+        <div className="card">
+          <img class="card-img-top" src={data.img} alt="Card image"></img>
+          <div className="card-body">
+            <h5 className="card-title">{data.role}</h5>
+            <p className="card-text" id="company">{data.company}</p>
+          </div>
+          <div className="card-footer">
+              <a href={data.link} className="footer-link" style={{"display" : data.link ? "inline-block" : "none"}}><i class="material-icons" style={{"color":"white"}}>language</i></a>
+              <a href={data.info} className="footer-link" style={{"display" : data.info ? "inline-block" : "none"}}><i class="material-icons" style={{"color":"white"}}>info</i></a>
+
+              {
+                data.tech.split(",").map( t=> <p className="tech">{t}</p>)
+              }
+
+            </div>
+        </div>
+      )
+    }
+}
+
+export default Card;

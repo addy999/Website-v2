@@ -1,5 +1,7 @@
 import React, {Component, useReducer} from 'react';
 import './css/Panel.css';
+import Card from './Card';
+import $ from 'jquery';
 
 class Panel extends React.Component {
 
@@ -8,10 +10,10 @@ class Panel extends React.Component {
     this.state = {checked : false};
 
     this.title_div_style = {
-      'max-width': 'fit-content',
+      'maxWidth': 'fit-content',
     }
     this.title_style = {
-      // "font-size" : "32px",
+      "font-size" : "xx-large",
     }
   }
 
@@ -19,16 +21,29 @@ class Panel extends React.Component {
     this.setState({
       checked : !this.state.checked
     });
+    $(".card-group").toggle(150, "swing");
+  }
+
+  componentDidMount() {
+    this.toggle();
   }
 
   render() {
+
+    const card_area_style = {
+      "margin" : "5vh 5vw",
+    }
+
     return (
       <div className="Panel">
         <div className="row">
           <div className="col" onClick={this.toggle} style={this.title_div_style}>
-            <h4 style={this.title_style}><span className="material-icons" id="plus">{!this.state.checked ? "add" : "remove"}</span>{this.props.title}</h4>
+            <h3 style={this.title_style} className="display-4" ><span className="material-icons" id="plus">{this.state.checked ? "add" : "remove"}</span>{this.props.title}</h3>
           </div>
           <hr className="col" id="line"></hr>
+        </div>
+        <div className="card-group" style={card_area_style}>
+          {this.props.data.map( (e) => <Card data={e}/> )}
         </div>
       </div>
     );
