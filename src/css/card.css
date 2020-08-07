@@ -9,6 +9,7 @@
     background: none;
     border : none;
     border-radius: 10px;    
+    min-height: 50vh;
 }
 
 .card-body {
@@ -33,13 +34,16 @@
     border : none;
     padding-left: 10px;
     padding-right: 10px;
+    display:table!important;
 }
 
 .footer-link {
     padding : 0 10px 0 0;
-    top:50%;
+    /* top:50%;
     transform: translateY(-50%);
-    position: relative;
+    position: relative; */
+    display:table-cell!important;
+    vertical-align:middle;
 }
 
 .tech {

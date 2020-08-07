@@ -34,6 +34,16 @@ class Panel extends React.Component {
       "margin" : "5vh 5vw",
     }
 
+    var arrayOfData = [this.props.data];
+    if(425 < window.innerWidth && window.innerWidth < 1030) {
+      console.log(window.innerWidth);
+      var size = 2;
+      arrayOfData = [];
+      for (var i=0; i<this.props.data.length; i+=size) {
+          arrayOfData.push(this.props.data.slice(i, i+size));
+      }
+    }
+
     return (
       <div className="Panel">
         <div className="row">
@@ -52,9 +62,15 @@ class Panel extends React.Component {
             'margin': this.state.width > 450 ? 'auto 3vw auto 0' : 'auto 6vw auto 0',
           }}></hr>
         </div>
-
-        <div className="card-group" style={card_area_style} ref={this.cardGroup}>
-          {this.props.data.map( (e) => <Card data={e}/> )}
+          
+        <div style={card_area_style} ref={this.cardGroup}>
+          {arrayOfData.map( 
+            (data) =>  {return <div className="card-group">
+                                {data.map( (e) => <Card data={e}/> )}
+                              </div>
+            }
+          )}
+         
         </div>
 
       </div>
