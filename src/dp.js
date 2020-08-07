@@ -17,8 +17,8 @@ class Dp extends React.Component {
           "borderRadius" : "1000px",
           "transition": "all 0.5s ease-in-out",
           "zIndex" : "5",
-          "width" : "250px",
-          "height" : "250px",
+          "width" : "17vw",
+          "height" : "17vw",
           "border" : "#96FFF2",
           'borderStyle' : 'solid',
 
