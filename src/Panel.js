@@ -23,9 +23,9 @@ class Panel extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.place != 0){
-      this.toggle();
-    }
+    // if (this.props.place != 0){
+      // this.toggle();
+    // }
   }
 
   render() {
@@ -48,7 +48,7 @@ class Panel extends React.Component {
       <div className="Panel" style={this.props.style}>
         <div className="row">
 
-          <div className="col" onClick={this.toggle} style={{'maxWidth': 'fit-content',}}>
+          <div className="col" onClick={this.toggle} style={{'maxWidth': 'fit-content', "cursor" : "pointer"}}>
             <h3 style={{"font-size" : this.state.width > 450 ? "xx-large" : "x-large"}} className="display-4" >
               <span style={{ 
               "margin" : 'auto 10px auto 10px',

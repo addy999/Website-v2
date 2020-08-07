@@ -11,6 +11,9 @@ import 'animate.css/animate.css';
 import $ from 'jquery';
 import 'jquery-scrollify/jquery.scrollify';
 
+import Projects from './Projects';
+import { findDOMNode } from 'react-dom';
+
 class Landing extends React.Component {
 
     constructor(props) {
@@ -53,8 +56,8 @@ class Landing extends React.Component {
         <div className="stars" style={this.stars_visible()}></div>
         <div className="twinkling" style={this.stars_visible()}></div>
 
-        <div className="text-center scroll">
-          <span onClick={() => $.scrollify.next()}></span>
+        <div style={{"cursor" : "pointer"}} className="text-center scroll" onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}>
+          <span></span>
         </div>
 
         <header className="header row">
@@ -71,9 +74,9 @@ class Landing extends React.Component {
             <p className="desc-text">Nice to see you, it's been a while.</p>
             <p className="desc-text bold blue">Full-stack and Software Dev.</p>
             <p className="desc-text">
-              Skill set includes: 
-              <span style={{'display': 'inline-block', "padding" : "0 10px"}} className={this.state.mouseover ? "blue" : animate_class} onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}> space tech,</span> 
-               ML pipelines, and fighting ninjas.
+              I like
+              <span style={{'display': 'inline-block', "padding" : "0 10px"}} className={this.state.mouseover ? "blue" : animate_class} onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}> space,</span> 
+               Toronto, and the gym.
             </p>
             <p className="desc-text">Explore my projects and give a shout.</p>
 

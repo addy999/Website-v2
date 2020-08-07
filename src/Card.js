@@ -19,7 +19,7 @@ class Card extends React.Component {
       desc.slice(85);
 
       return (
-        <div className="card">
+        <div className="card" onClick={() => window.location.href=data.link ? data.link : "javascript:void(0);"} style={{"cursor" : data.link ? "pointer" : "unset"}}>
           <img class="card-img-top" src={data.img ? data.img : placeholder} alt="Card image"></img>
           <div className="card-body">
             <h5 className="card-title">{data.role}</h5>
@@ -28,10 +28,14 @@ class Card extends React.Component {
           </div>
           <div className="card-footer">
 
-              <a href={data.link} className="footer-link" style={{"display" : data.link ? "inline-block" : "none"}}>
-                <i class="material-icons" style={{"color":"white"}}>language</i>
-              </a>
-              <a href={data.info} className="footer-link" style={{"display" : data.info ? "inline-block" : "none"}}>
+              {/* <a href={data.link} className="footer-link" style={{"display" : data.link ? "inline-block" : "none"}}>
+                <i class="material-icons" style={{"color":"white"}}>language</i> */}
+              {/* </a> */}
+              
+              <a href={data.info} className="footer-link" style={{
+                "opacity" : data.info ? "1" : "0",
+                "cursor" : data.info ? "pointer" : "unset",
+                }}>
                 <i class="material-icons" style={{"color":"white"}}>info</i>
               </a>
 

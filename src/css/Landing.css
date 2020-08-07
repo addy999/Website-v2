@@ -34,6 +34,7 @@
   transform: translateX(-50%);
   bottom: 0;
   margin: 0 0 100px 0;
+  width: 20vw;
 }
 
 .scroll span {
@@ -53,7 +54,7 @@
 }
 
 #git {
-  border-color: white;
+  border-color: rgba(0,0,0,0.5);
 }
 
 #git:hover {

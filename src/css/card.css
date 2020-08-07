@@ -1,6 +1,11 @@
 .card:hover {
     box-shadow: 0 0 2px 1px #96FFF2;
+    /* cursor: pointer; */
 }
+
+/* .card-title:hover .card-text:hover .card-footer:hover {
+    cursor: unset;
+} */
 
 .card {
     max-width : 22rem;
