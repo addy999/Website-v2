@@ -11,12 +11,9 @@ import Footer from './Footer';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Landing stars={false} />
-    <Projects panels={["Work", "Side Projects", "Learning by doing"]} />
+    <Landing />
+    <Projects />
     <Footer />
-    {/* <Panel title="Work"/>
-    <Panel title="Side Projects"/>
-    <Panel title="Learning by doing"/> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
