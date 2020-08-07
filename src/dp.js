@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import './css/dp.css';
+import React from 'react';
 
 import dp_pic from './assests/dp.jpg';
 import grad from './assests/grad.png';
@@ -15,13 +14,13 @@ class Dp extends React.Component {
 
       this.base_collage_style = {
           "position" : "absolute",
-          "border-radius" : "1000px",
-          "transition": "all 0.75s ease-in-out",
-          "z-index" : "5",
+          "borderRadius" : "1000px",
+          "transition": "all 0.5s ease-in-out",
+          "zIndex" : "5",
           "width" : "250px",
           "height" : "250px",
           "border" : "#96FFF2",
-          'border-style' : 'solid',
+          'borderStyle' : 'solid',
 
       };
 
@@ -53,10 +52,10 @@ class Dp extends React.Component {
       this.dp_img_style = {
           'width': '25vw',
           'border': 'white',
-          'border-radius': '1000px',
-          'border-style': 'solid',
-          "transition": "all 0.75s ease-in-out",
-          "z-index" : "0",
+          'borderRadius': '1000px',
+          'borderStyle': 'solid',
+          "transition": "all 0.5s ease-in-out",
+          "zIndex" : "0",
           "position" : "relative"
         };
     }
@@ -73,7 +72,7 @@ class Dp extends React.Component {
 
     get_dp_style = () => {     
         if(this.state.mouseover){
-            var style = { ...this.dp_img_style, ...{"filter" : "brightness(50%)"} };  
+            var style = { ...this.dp_img_style, ...{"filter" : "brightness(20%)"} };  
         }
         else {
             var style = { ...this.dp_img_style, ...{"filter" : "brightness(100%)"} };  
