@@ -39,7 +39,8 @@ class Panel extends React.Component {
         <div className="row">
 
           <div className="col" onClick={this.toggle} style={{'maxWidth': 'fit-content',}}>
-            <h3 style={{"font-size" : this.state.width > 450 ? "xx-large" : "x-large"}} className="display-4" ><span style={{ 
+            <h3 style={{"font-size" : this.state.width > 450 ? "xx-large" : "x-large"}} className="display-4" >
+              <span style={{ 
               "margin" : 'auto 10px auto 10px',
               'transform':  this.state.width < 450 ? 'translateY(20%)' : "",
               }} className="material-icons">{this.state.checked ? "add" : "remove"}</span>{this.props.title}</h3>
@@ -48,7 +49,7 @@ class Panel extends React.Component {
           <hr className="col" style={{
             'maxWidth': '100%',
             'backgroundColor': 'white',
-            'margin': 'auto 3vw auto 0',
+            'margin': this.state.width > 450 ? 'auto 3vw auto 0' : 'auto 6vw auto 0',
           }}></hr>
         </div>
 

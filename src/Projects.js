@@ -7,7 +7,8 @@ class Projects extends React.Component {
     constructor(props) {
       super(props);
       this.state ={
-        data : []
+        data : [],
+        width: window.innerWidth
       }
     }
 
@@ -61,7 +62,10 @@ class Projects extends React.Component {
         return (
           <div className="Projects" style={style}>
               
-              <h1 className="blue display-4" style={{"padding":"10px"}}>
+              <h1 className="blue display-4" style={{
+                "padding":"10px",
+                "fontSize" : this.state.width < 450 ? "3rem" : "",
+                }}>
                   Projects
               </h1>
 
