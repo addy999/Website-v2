@@ -61,15 +61,15 @@ class Landing extends React.Component {
 
             <div className="row butt">
 
-              <button type="button" className="btn btn-outline-dark col">
+              <button type="button" className="btn btn-outline-dark col" onClick={() => window.location.href='https://github.com/addy999'}>
                 <img className="contact-img" src={github}></img>
               </button>
 
-              <button type="button" className="btn btn-outline-primary col">
+              <button type="button" className="btn btn-outline-primary col" onClick={() => window.location.href='https://www.linkedin.com/in/addybhatia/'}>
                 <img className="contact-img" src={linkedin}></img>
               </button>
 
-              <button type="button" className="btn btn-outline-info col">
+              <button type="button" className="btn btn-outline-info col" onClick={() => window.location.href='mailto:jude.addy999@gmail.com'}>
               <img className="contact-img" src={email}></img>
               </button>
 

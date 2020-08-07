@@ -11,8 +11,12 @@ class Card extends React.Component {
     render() {
 
       const {data} = this.props;
+
       let tech = data.tech.split(",");
       tech.splice(3); // Only keep the first 3 tags due to space
+
+      let desc = data.description; // Only keep85 chars due to space
+      desc.slice(85);
 
       return (
         <div className="card">
@@ -20,11 +24,16 @@ class Card extends React.Component {
           <div className="card-body">
             <h5 className="card-title">{data.role}</h5>
             <p className="card-text" id="company">{data.company}</p>
+            <p className="card-text">{desc}</p>
           </div>
           <div className="card-footer">
 
-              <a href={data.link} className="footer-link" style={{"display" : data.link ? "inline-block" : "none"}}><i class="material-icons" style={{"color":"white"}}>language</i></a>
-              <a href={data.info} className="footer-link" style={{"display" : data.info ? "inline-block" : "none"}}><i class="material-icons" style={{"color":"white"}}>info</i></a>
+              <a href={data.link} className="footer-link" style={{"display" : data.link ? "inline-block" : "none"}}>
+                <i class="material-icons" style={{"color":"white"}}>language</i>
+              </a>
+              <a href={data.info} className="footer-link" style={{"display" : data.info ? "inline-block" : "none"}}>
+                <i class="material-icons" style={{"color":"white"}}>info</i>
+              </a>
 
               {
                 tech.map( t=> <p className="footer-link tech">{t}</p>)
