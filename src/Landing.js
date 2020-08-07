@@ -7,6 +7,9 @@ import email from './assests/email.png';
 
 import './css/Landing.css';
 import './css/stars2.css';
+import 'animate.css/animate.css';
+import $ from 'jquery';
+import 'jquery-scrollify/jquery.scrollify';
 
 class Landing extends React.Component {
 
@@ -19,6 +22,12 @@ class Landing extends React.Component {
       }
     }
 
+    componentDidMount() {
+      // $.scrollify({
+      //   section : ".section",
+      // });
+    }
+
     stars_visible = () => {
       return {
         "opacity" : this.state.mouseover ? 1 : 0,
@@ -27,8 +36,11 @@ class Landing extends React.Component {
     }
 
     render() {
+
+      const animate_class = "animate__animated animate__pulse animate__infinite infinite";
+
       return (
-        <div className="Landing">
+        <div className="Landing section">
 
         {/* Scrolling stars   */}
 
@@ -40,6 +52,10 @@ class Landing extends React.Component {
 
         <div className="stars" style={this.stars_visible()}></div>
         <div className="twinkling" style={this.stars_visible()}></div>
+
+        <div className="text-center scroll">
+          <span onClick={() => $.scrollify.next()}></span>
+        </div>
 
         <header className="header row">
 
@@ -54,7 +70,11 @@ class Landing extends React.Component {
             <br></br>
             <p className="desc-text">Nice to see you, it's been a while.</p>
             <p className="desc-text bold blue">Full-stack and Software Dev.</p>
-            <p className="desc-text">I code everything from <span className={this.state.mouseover ? "blue" : ""} onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}>space tech</span> to ML pipelines.</p>
+            <p className="desc-text">
+              I code everything from 
+              <span style={{'display': 'inline-block', "padding" : "0 10px"}} className={this.state.mouseover ? "blue" : animate_class} onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}>space tech</span> 
+              to ML pipelines.
+            </p>
             <p className="desc-text">Explore my projects and give a shout.</p>
 
             {/* {this.state.width > 450 ? <br>} */}
@@ -75,8 +95,10 @@ class Landing extends React.Component {
 
             </div>
           </div>
+          
+        </header>      
+        
 
-        </header>
       </div>
       );
     }
