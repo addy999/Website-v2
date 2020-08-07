@@ -13,7 +13,7 @@ class Card extends React.Component {
       const {data} = this.props;
 
       let tech = data.tech.split(",");
-      tech.splice(3); // Only keep the first 3 tags due to space
+      window.innerWidth < 450 ? tech.splice(2) : tech.splice(3) // Only keep the first 2 or 3 tags due to space
 
       let desc = data.description; // Only keep85 chars due to space
       desc.slice(85);

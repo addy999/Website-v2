@@ -60,7 +60,7 @@ class Projects extends React.Component {
       if (this.state.loaded) {
 
         return (
-          <div className="Projects" style={style}>
+          <div className="Projects section" style={style}>
               
               <h1 className="blue display-4" style={{
                 "padding":"10px",
@@ -72,7 +72,7 @@ class Projects extends React.Component {
               <br></br>
 
               {
-                this.state.types.map((type, index) => <Panel title={type} data={this.state.projects[type]} place={index}/>)
+                this.state.types.map((type, index) => <Panel title={type} style={{"padding" : "0 0 2vh 0"}} data={this.state.projects[type]} place={index}/>)
               }
 
           </div>

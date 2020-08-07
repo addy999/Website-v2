@@ -45,7 +45,7 @@ class Panel extends React.Component {
     }
 
     return (
-      <div className="Panel">
+      <div className="Panel" style={this.props.style}>
         <div className="row">
 
           <div className="col" onClick={this.toggle} style={{'maxWidth': 'fit-content',}}>
