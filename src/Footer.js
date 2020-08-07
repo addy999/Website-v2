@@ -9,12 +9,13 @@ class Footer extends React.Component {
     render() {
 
         const style = {
-            "paddingTop": "5vh",
+            "paddingTop": "7vh",
             "color": "white",
             "position": "absolute",
             "left": 0,
             "bottom": 0,
-            "width": "100%"
+            "width": "100%",
+            "marginBottom": "10px",
         }
 
         return (

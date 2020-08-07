@@ -59,7 +59,7 @@ class Landing extends React.Component {
 
         <header className="header row">
 
-          <div className="col-md">
+          <div className="col-md" style={{"marginTop" : this.state.width < 450 ? "-5vh" : ""}}>
             <Dp />
           </div>
           
@@ -71,9 +71,9 @@ class Landing extends React.Component {
             <p className="desc-text">Nice to see you, it's been a while.</p>
             <p className="desc-text bold blue">Full-stack and Software Dev.</p>
             <p className="desc-text">
-              I code everything from 
-              <span style={{'display': 'inline-block', "padding" : "0 10px"}} className={this.state.mouseover ? "blue" : animate_class} onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}>space tech</span> 
-              to ML pipelines.
+              Skill set includes: 
+              <span style={{'display': 'inline-block', "padding" : "0 10px"}} className={this.state.mouseover ? "blue" : animate_class} onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}> space tech,</span> 
+               ML pipelines, and fighting ninjas.
             </p>
             <p className="desc-text">Explore my projects and give a shout.</p>
 
@@ -81,7 +81,7 @@ class Landing extends React.Component {
 
             <div className="row butt">
 
-              <button type="button" className="btn btn-outline-dark col" onClick={() => window.location.href='https://github.com/addy999'}>
+              <button type="button" className="btn btn-outline-dark col" onClick={() => window.location.href='https://github.com/addy999'} id="git">
                 <img className="contact-img" src={github}></img>
               </button>
 
