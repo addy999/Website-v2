@@ -1,4 +1,5 @@
 import React, {Component, useReducer} from 'react';
+import { findDOMNode } from 'react-dom';
 import './css/Panel.css';
 import Card from './Card';
 import $ from 'jquery';
@@ -15,17 +16,20 @@ class Panel extends React.Component {
     this.title_style = {
       "font-size" : "xx-large",
     }
+    this.cardGroup = React.createRef();
   }
 
   toggle = () => {
     this.setState({
       checked : !this.state.checked
     });
-    $(".card-group").toggle(150, "swing");
+    $(findDOMNode(this.cardGroup.current)).toggle(150, "swing");
   }
 
   componentDidMount() {
-    this.toggle();
+    if (this.props.place != 0){
+      this.toggle();
+    }
   }
 
   render() {
@@ -42,7 +46,7 @@ class Panel extends React.Component {
           </div>
           <hr className="col" id="line"></hr>
         </div>
-        <div className="card-group" style={card_area_style}>
+        <div className="card-group" style={card_area_style} ref={this.cardGroup}>
           {this.props.data.map( (e) => <Card data={e}/> )}
         </div>
       </div>

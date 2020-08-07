@@ -67,7 +67,7 @@ class Projects extends React.Component {
               <br></br>
 
               {
-                this.state.types.map((type) => <Panel title={type} data={this.state.projects[type]} />)
+                this.state.types.map((type, index) => <Panel title={type} data={this.state.projects[type]} place={index}/>)
               }
 
           </div>
