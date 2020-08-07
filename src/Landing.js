@@ -14,6 +14,8 @@ class Landing extends React.Component {
       super(props);
       this.state = {
         mouseover : false,
+        width: window.innerWidth, 
+        height: window.innerHeight
       }
     }
 
@@ -41,12 +43,12 @@ class Landing extends React.Component {
 
         <header className="header row">
 
-          <div className="col">
+          <div className="col-md">
             <Dp />
           </div>
           
-          <div id="desc" className="col">
-            <h1 className="display-4">
+          <div id="desc" className="col-md">
+            <h1 id="title" className="display-4">
               Addy <span className="blue">Bhatia</span>
             </h1>
             <br></br>
@@ -55,19 +57,19 @@ class Landing extends React.Component {
             <p className="desc-text">I code everything from <span className={this.state.mouseover ? "blue" : ""} onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}>space tech</span> to ML pipelines.</p>
             <p className="desc-text">Explore my projects and give a shout.</p>
 
-            <br></br>
+            {/* {this.state.width > 450 ? <br>} */}
 
             <div className="row butt">
 
-              <button type="button" className="btn btn-outline-dark col-sm">
+              <button type="button" className="btn btn-outline-dark col">
                 <img className="contact-img" src={github}></img>
               </button>
 
-              <button type="button" className="btn btn-outline-primary col-sm">
+              <button type="button" className="btn btn-outline-primary col">
                 <img className="contact-img" src={linkedin}></img>
               </button>
 
-              <button type="button" className="btn btn-outline-info col-sm">
+              <button type="button" className="btn btn-outline-info col">
               <img className="contact-img" src={email}></img>
               </button>
 

@@ -10,7 +10,11 @@ class Dp extends React.Component {
     constructor(props) {
       super(props);
 
-      this.state = {mouseover : false};
+      this.state = {
+          mouseover : false,
+          width: window.innerWidth, 
+          height: window.innerHeight
+        };
 
       this.base_collage_style = {
           "position" : "absolute",
@@ -49,8 +53,7 @@ class Dp extends React.Component {
             "opacity" : 1,
       }];
 
-      this.dp_img_style = {
-          'width': '25vw',
+      this.base_dp_img_style = {   
           'border': 'white',
           'borderRadius': '1000px',
           'borderStyle': 'solid',
@@ -61,23 +64,17 @@ class Dp extends React.Component {
     }
 
     get_collage_style = (i) => {     
-        if(this.state.mouseover){
-            var style = { ...this.base_collage_style, ...this.after_transform[i] };  
-        }
-        else {
-            var style = { ...this.base_collage_style, ...this.before_transform };  
-        }
-        return style;
+
+        let transform = this.state.mouseover && this.state.width >=450 ? this.after_transform[i] : this.before_transform;
+        return { ...this.base_collage_style, ...transform};
     }
 
     get_dp_style = () => {     
-        if(this.state.mouseover){
-            var style = { ...this.dp_img_style, ...{"filter" : "brightness(20%)"} };  
-        }
-        else {
-            var style = { ...this.dp_img_style, ...{"filter" : "brightness(100%)"} };  
-        }
-        return style;
+        return { 
+            ...this.base_dp_img_style, 
+            ...{"filter" : this.state.mouseover && this.state.width >=450 ? "brightness(20%)" : "brightness(100%)"},
+            ...{"width" : this.state.width >= 450 ? '25vw' : '55vw'},
+        };
     }
 
     render() {
@@ -85,7 +82,7 @@ class Dp extends React.Component {
         const placeholder = "https://via.placeholder.com/250";
 
         return (
-            <figure style={{"width": "fit-content", "margin": "auto"}} onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}>
+            <figure style={{...{"width": "fit-content", "margin": "auto"}, ...{"padding-top" : this.state.width >= 450 ? '' : '5vh'}}}onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}>
 
                 {/* Collage overlay */}
                 <img style={this.get_collage_style(0)} src={grad}></img>

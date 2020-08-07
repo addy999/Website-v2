@@ -53,6 +53,7 @@ class Projects extends React.Component {
             "position" : "relative",
             "background": "radial-gradient(ellipse at bottom, #12181a 0%, #090a0f 100%)",
             "color": "white",
+            "min-height" : "100vh"
       }
 
       if (this.state.loaded) {
@@ -60,7 +61,7 @@ class Projects extends React.Component {
         return (
           <div className="Projects" style={style}>
               
-              <h1 className="blue display-4">
+              <h1 className="blue display-4" style={{"padding":"10px"}}>
                   Projects
               </h1>
 

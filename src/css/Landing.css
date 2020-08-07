@@ -15,12 +15,30 @@
 .butt {
   max-width: 30vw;
   margin: auto;
+  padding-top: 2.5vh;
 }
 
 .btn {
   margin-right: 10px;
   max-width: 10vw;
   /* margin: auto; */
+}
+@media (max-width: 450px) {
+  .btn {
+    min-width: 20vw;
+    max-width: unset;
+  }
+  .butt {
+    max-width: 75vw;
+    /* padding-top: 2.5vh; */
+  }
+  .desc-text {
+    font-size: 0.9em;
+  }
+  #title {
+    font-size: 2.5em;
+    margin-top: -3vh;
+  }
 }
 
 /* .App-logo {

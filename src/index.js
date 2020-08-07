@@ -11,9 +11,9 @@ import Footer from './Footer';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Landing />
+    {/* <Landing /> */}
     <Projects />
-    <Footer />
+    {/* <Footer /> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

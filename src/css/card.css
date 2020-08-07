@@ -43,13 +43,6 @@
 }
 
 .tech {
-    /* display: inline-block; */
-    /* position: relative; */
-    /* right:0; */
-    /* transform: translateX(100%); */
-    /* text-align: right; */
-    /* margin-right: 0;
-    margin-left: auto; */
     float : right;
     margin-left: 10px;
     background-color: #456f6a;

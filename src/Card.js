@@ -22,11 +22,12 @@ class Card extends React.Component {
             <p className="card-text" id="company">{data.company}</p>
           </div>
           <div className="card-footer">
+
               <a href={data.link} className="footer-link" style={{"display" : data.link ? "inline-block" : "none"}}><i class="material-icons" style={{"color":"white"}}>language</i></a>
               <a href={data.info} className="footer-link" style={{"display" : data.info ? "inline-block" : "none"}}><i class="material-icons" style={{"color":"white"}}>info</i></a>
 
               {
-                tech.map( t=> <p className="tech">{t}</p>)
+                tech.map( t=> <p className="footer-link tech">{t}</p>)
               }
 
             </div>
