@@ -36,7 +36,6 @@ class Panel extends React.Component {
 
     var arrayOfData = [this.props.data];
     if(425 < window.innerWidth && window.innerWidth < 1030) {
-      console.log(window.innerWidth);
       var size = 2;
       arrayOfData = [];
       for (var i=0; i<this.props.data.length; i+=size) {
@@ -49,7 +48,7 @@ class Panel extends React.Component {
         <div className="row">
 
           <div className="col" onClick={this.toggle} style={{'maxWidth': 'fit-content', "cursor" : "pointer"}}>
-            <h3 style={{"font-size" : this.state.width > 450 ? "xx-large" : "x-large"}} className="display-4" >
+            <h3 style={{"fontSize" : this.state.width > 450 ? "xx-large" : "x-large"}} className="display-4" >
               <span style={{ 
               "margin" : 'auto 10px auto 10px',
               'transform':  this.state.width < 450 ? 'translateY(20%)' : "",

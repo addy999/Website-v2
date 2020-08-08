@@ -10,11 +10,11 @@ import Projects from './Projects';
 import Footer from './Footer';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <Landing />
     <Projects />
     <Footer />
-  </React.StrictMode>,
+  </>,
   document.getElementById('root')
 );
 

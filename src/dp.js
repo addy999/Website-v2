@@ -82,7 +82,7 @@ class Dp extends React.Component {
         const placeholder = "https://via.placeholder.com/250";
 
         return (
-            <figure style={{...{"width": "fit-content", "margin": "auto"}, ...{"padding-top" : this.state.width >= 450 ? '' : ''}}}onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}>
+            <figure style={{...{"width": "fit-content", "margin": "auto"}, ...{"paddingTop" : this.state.width >= 450 ? '' : ''}}}onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}>
 
                 {/* Collage overlay */}
                 <img style={this.get_collage_style(0)} src={grad}></img>

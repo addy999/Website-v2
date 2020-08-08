@@ -54,7 +54,7 @@ class Projects extends React.Component {
             "position" : "relative",
             "background": "radial-gradient(ellipse at bottom, #12181a 0%, #090a0f 100%)",
             "color": "white",
-            "min-height" : "100vh"
+            "minHeight" : "100vh"
       }
 
       if (this.state.loaded) {
