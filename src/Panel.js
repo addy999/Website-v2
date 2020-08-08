@@ -60,6 +60,7 @@ class Panel extends React.Component {
             'backgroundColor': 'white',
             'margin': this.state.width > 450 ? 'auto 3vw auto 0' : 'auto 6vw auto 0',
             "opacity" : this.state.width > 450 ? 1 : 0,
+            "display" : this.state.width < 450 ? "none" : "block",
           }}></hr>
         </div>
           

@@ -33,6 +33,7 @@
 .card-body {
     padding-left: 10px;
     padding-right: 10px;
+    min-height: fit-content;
 }
 
 .card-img-top {
