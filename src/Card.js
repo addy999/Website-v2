@@ -1,11 +1,13 @@
 import React from 'react';
 import './css/card.css';
 import placeholder from './assests/placeholder.png';
+import moment from 'moment/moment';
 
 class Card extends React.Component {
 
     constructor(props) {
       super(props);
+      this.card_id = React.createRef();
     }
 
     render() {
@@ -15,28 +17,42 @@ class Card extends React.Component {
       let tech = data.tech.split(",");
       window.innerWidth < 450 ? tech.splice(2) : tech.splice(3) // Only keep the first 2 or 3 tags due to space
 
-      let desc = data.description; // Only keep85 chars due to space
-      desc.slice(85);
+      let desc = data.description; 
+      
+      // Parse date string
+      if (!data.end){
+        var date = moment(data.start).format("MMM YYYY") + "- Present";
+      }
+      else {
+        var date = moment(data.start).format("MMM YYYY") + "-" + moment(data.end).format("MMM YYYY");
+      }
 
       return (
-        <div className="card" onClick={() => window.location.href=data.link ? data.link : "javascript:void(0);"} style={{"cursor" : data.link ? "pointer" : "unset"}}>
-          <img class="card-img-top" src={data.img ? data.img : placeholder} alt="Card image"></img>
+
+        <div className="card" 
+        onClick={() => window.location.href=data.link ? data.link : "javascript:void(0);"} 
+        style={{"cursor" : data.link ? "pointer" : "unset"}}
+        onMouseEnter={()=>this.card_id.current.style.opacity=1}
+        onMouseLeave={()=>this.card_id.current.style.opacity=0}
+        >
+          <p id="tag" ref={this.card_id}>{data.tag}</p>
+          <img className="card-img-top" src={data.img ? data.img : placeholder} alt="Card image"></img>
           <div className="card-body">
             <h5 className="card-title">{data.role}</h5>
-            <p className="card-text" id="company">{data.company}</p>
+            <p className="card-text" id="company">{data.company}<span style={{"float":"right"}}>{date}</span></p>
             <p className="card-text">{desc}</p>
           </div>
           <div className="card-footer">
 
               {/* <a href={data.link} className="footer-link" style={{"display" : data.link ? "inline-block" : "none"}}>
-                <i class="material-icons" style={{"color":"white"}}>language</i> */}
+                <i className="material-icons" style={{"color":"white"}}>language</i> */}
               {/* </a> */}
               
               <a href={data.info} className="footer-link" style={{
                 "opacity" : data.info ? "1" : "0",
-                "cursor" : data.info ? "pointer" : "unset",
+                "cursor" : data.info ? "default!important" : "default!important",
                 }}>
-                <i class="material-icons" style={{"color":"white"}}>info</i>
+                <i className="material-icons" style={{"color":"white"}}>info</i>
               </a>
 
               {
