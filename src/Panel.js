@@ -55,7 +55,7 @@ class Panel extends React.Component {
               }} className="material-icons">{this.state.checked ? "add" : "remove"}</span>{this.props.title}</h3>
           </div>
           
-          <hr className="col" style={{
+          <hr className={this.state.width<450 && this.props.title.length>10 ? "col" : "col"} style={{
             'maxWidth': '100%',
             'backgroundColor': 'white',
             'margin': this.state.width > 450 ? 'auto 3vw auto 0' : 'auto 6vw auto 0',
