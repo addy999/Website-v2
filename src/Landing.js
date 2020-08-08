@@ -2,6 +2,7 @@ import React from 'react';
 
 import Dp from './dp';
 import github from './assests/github.png';
+import medium from './assests/medium-01.png';
 import linkedin from './assests/linkedin.gif';
 import email from './assests/email.png';
 
@@ -84,15 +85,19 @@ class Landing extends React.Component {
 
             <div className="row butt">
 
-              <button type="button" className="btn btn-outline-dark col" onClick={() => window.location.href='https://github.com/addy999'} id="git">
+              <button type="button" className="btn btn-outline-dark col-3" onClick={() => window.location.href='https://github.com/addy999'} id="git">
                 <img className="contact-img" src={github}></img>
               </button>
 
-              <button type="button" className="btn btn-outline-primary col" onClick={() => window.location.href='https://www.linkedin.com/in/addybhatia/'}>
+              <button type="button" className="btn btn-outline-primary col-3" onClick={() => window.location.href='https://www.linkedin.com/in/addybhatia/'}>
                 <img className="contact-img" src={linkedin}></img>
               </button>
 
-              <button type="button" className="btn btn-outline-info col" onClick={() => window.location.href='mailto:jude.addy999@gmail.com'}>
+              <button type="button" className="btn btn-outline-dark col-3" onClick={() => window.location.href='https://www.medium.com/@baetia'}>
+                <img className="contact-img" src={medium}></img>
+              </button>
+
+              <button type="button" className="btn btn-outline-info col-3" onClick={() => window.location.href='mailto:jude.addy999@gmail.com'}>
               <img className="contact-img" src={email}></img>
               </button>
 
