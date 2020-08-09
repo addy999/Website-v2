@@ -2,6 +2,7 @@ import React from 'react';
 import './css/card.css';
 import placeholder from './assests/placeholder.png';
 import moment from 'moment/moment';
+import Vote from './vote';
 
 class Card extends React.Component {
 
@@ -28,14 +29,16 @@ class Card extends React.Component {
       }
 
       return (
-
+        <>
         <div className="card" 
         onClick={() => window.location.href=data.link ? data.link : "javascript:void(0);"} 
         style={{"cursor" : data.link ? "pointer" : "unset"}}
         onMouseEnter={()=>this.card_id.current.style.opacity=1}
-        onMouseLeave={()=>this.card_id.current.style.opacity=0}
-        >
-          <p id="tag" ref={this.card_id}>{data.tag}</p>
+        onMouseLeave={()=>this.card_id.current.style.opacity=0}>
+          <div className="overlay" ref={this.card_id}>
+            {/* <p className="tag">{data.tag}</p> */}
+            <Vote id={data.id} />
+          </div>
           <img className="card-img-top" src={data.img ? data.img : placeholder} alt="Card image"></img>
           <div className="card-body">
             <h5 className="card-title">{data.role}</h5>
@@ -61,6 +64,7 @@ class Card extends React.Component {
 
             </div>
         </div>
+        </>
       )
     }
 }
