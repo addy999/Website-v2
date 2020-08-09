@@ -7,6 +7,7 @@ class Vote extends React.Component {
     super(props);
     this.state = {
       id : this.props.id
+      
     };
     this.thumbsUp = React.createRef();
     this.thumbsDown = React.createRef();
