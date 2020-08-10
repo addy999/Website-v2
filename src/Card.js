@@ -34,14 +34,14 @@ class Card extends React.Component {
         style={{"cursor" : data.link ? "pointer" : "unset"}}
         onMouseEnter={()=>this.card_id.current.style.opacity=0.8}
         onMouseLeave={()=>this.card_id.current.style.opacity=0}>
-          <div className="overlay" ref={this.card_id}>
+          <div className="overlay" ref={this.card_id} style={{"display" : window.innerWidth > 450 ? "block" : "none"}}>
             <p className="tag">{data.tag}</p>
             <Vote id={data.id} />
           </div>
           <img className="card-img-top" src={data.img ? data.img : placeholder} alt="Card image" 
-          style={{"cursor" : "unset"}}>
-          {/* onClick={() => window.location.href = data.link && this.card_id.current.style.opacity==0 ? data.link : "javascript:void(0);"}> */}
-          </img>
+          style={{"cursor" : "unset"}}></img>
+          {/* onClick={() => window.location.href = data.link && window.innerWidth > 450 ? data.link : "javascript:void(0);"}>
+          </img> */}
           <div className="card-body" onClick={() => window.location.href = data.link ? data.link : "javascript:void(0);"} >
             <h5 className="card-title">{data.role}</h5>
             <p className="card-text" id="company">{data.company}<span style={{"float":"right"}}>{date}</span></p>
@@ -66,6 +66,7 @@ class Card extends React.Component {
 
             </div>
         </div>
+        {window.innerWidth < 450 ? <Vote id={data.id} /> : ""}
         </>
       )
     }

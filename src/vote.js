@@ -44,8 +44,10 @@ class Vote extends React.Component {
 
   render() { 
 
+    const mobile = window.innerWidth < 450;
+
     const thumb_style = {
-      "font-size" : "3em",
+      "font-size" :  mobile ? "2em" : "3em",
     }
 
     return (
@@ -56,7 +58,8 @@ class Vote extends React.Component {
             "alignItems" : "center",
             "z-index" : 5,
             "cursor" : "default",
-            "padding" : "0 30%"
+            "padding" : "0 30%",
+            "margin" : mobile ? "5vh 0" : "",
         }}>
             <span style={thumb_style} ref={this.thumbsUp} className="material-icons col" 
             onMouseEnter={()=>this.thumbsUp.current.style.color="#96FFF2"}
