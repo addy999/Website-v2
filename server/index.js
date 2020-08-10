@@ -3,10 +3,13 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const pino = require('express-pino-logger')();
 const db = require('./db');
+const moment = require('moment');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(pino);
+
+const DELAY = 1000; // ms
 
 app.get('/api/greeting', (req, res) => {
   const name = req.query.name || 'World';
@@ -16,7 +19,7 @@ app.get('/api/greeting', (req, res) => {
 
 app.get('/api/getVote', (req, res) => {
   const id = String(req.query.id);
-  var score = db.viewVote(id);
+  var [score, dt] = db.viewVote(id);
   if (score==null){
     // i.e. doesn't exist in db
     score = db.modifyScore(id); // Create a 0 score and add to db
@@ -26,8 +29,22 @@ app.get('/api/getVote', (req, res) => {
 })
 
 app.get('/api/upVote', (req, res) => {
+
   const id = String(req.query.id);
-  var score = db.modifyScore(id, true);
+  var now = moment().toDate().getTime();
+  let [last_vote, last_vote_dt] = db.viewVote(id);
+  let skip = false;
+
+  if (last_vote_dt){
+    last_vote_dt = last_vote_dt.toDate().getTime();
+    if(now-last_vote_dt <= DELAY) skip = true;
+  }
+
+  if (skip) var score = last_vote;
+  else var score = db.modifyScore(id, true);
+
+  // if (skip) console.log("SKIPPING");
+  // else console.log("fine");
 
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({ score: `${score}` }));

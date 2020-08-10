@@ -1,4 +1,5 @@
 const Database = require('better-sqlite3');
+const moment = require('moment');
 const DB_PATH = './votes.db';
 
 function connect() {  
@@ -8,7 +9,7 @@ function connect() {
 function create() {
 
     db = connect();
-    db.prepare("CREATE TABLE votes (id int PRIMARY KEY, score int)").run();
+    db.prepare("CREATE TABLE votes (id int PRIMARY KEY, score int, dt varchar)").run();
     db.close();
 }
 
@@ -20,14 +21,16 @@ function viewVote(id) {
 
     // console.log("Result", res);
 
-    if (res) return res.score
-    else return null
+    if (res) return [res.score, moment(res.dt)]
+    else return [null, null]
 }
 
 function modifyScore(id, increase=true) {
 
-    var vote = viewVote(id);
+    var [vote, dt] = viewVote(id);
+    console.log("Modifying", vote, dt )
     var cmnd = "REPLACE";
+    var now = moment().format();
 
     if (vote == null) {
         // console.log("adding new");
@@ -45,7 +48,7 @@ function modifyScore(id, increase=true) {
     }
     
     let db = connect();
-    db.prepare(cmnd + " INTO votes VALUES (?,?)").run(id, new_vote);
+    db.prepare(cmnd + " INTO votes VALUES (?,?,?)").run(id, new_vote, now);
     db.close();
 
     return new_vote
