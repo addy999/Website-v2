@@ -31,6 +31,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "serve": "^11.3.2",
     "sqlite3": "^5.0.0",
     "tabletop": "^1.6.3"
   },
@@ -40,8 +41,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "node-env-run server --exec nodemon | pino-colada",
+    "prod-server" : "node server",
     "dev": "run-p server start",
-    "prod": "run-p server build"
+    "prod": "run-p prod-server build "
   },
   "eslintConfig": {
     "extends": "react-app"
