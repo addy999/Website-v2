@@ -73,7 +73,7 @@ class Dp extends React.Component {
         return { 
             ...this.base_dp_img_style, 
             ...{"filter" : this.state.mouseover && this.state.width >=450 ? "brightness(20%)" : "brightness(100%)"},
-            ...{"width" : this.state.width >= 450 ? '25vw' : '55vw'},
+            ...{"width" : this.state.width < 800 ? this.state.width < 450 ? '55vw' : '30vw' : '25vw'},
         };
     }
 
