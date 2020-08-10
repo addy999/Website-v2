@@ -21,6 +21,7 @@
 .btn {
   margin-right: 10px;
   max-width: 8vw;
+  border-radius: 10px;
   /* margin: auto; */
 }
 
