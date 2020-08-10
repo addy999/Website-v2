@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const pino = require('express-pino-logger')();
 const db = require('./db');
 
