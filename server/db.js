@@ -18,7 +18,7 @@ function viewVote(id) {
     let res = db.prepare("SELECT * FROM votes WHERE id = ?").get(id);
     db.close();
 
-    console.log("Result", res);
+    // console.log("Result", res);
 
     if (res) return res.score
     else return null
@@ -30,24 +30,33 @@ function modifyScore(id, increase=true) {
     var cmnd = "REPLACE";
 
     if (vote == null) {
-        console.log("adding new");
+        // console.log("adding new");
         vote = 0;
         cmnd = "INSERT";
     }
 
     if(increase){
         var new_vote = vote + 1;
-        console.log("Increased to ", new_vote);
+        // console.log("Increased to ", new_vote);
     }
     else{
         var new_vote = vote - 1 >= 0 ? vote - 1 : 0;
-        console.log("Decreased to ", new_vote);
+        // console.log("Decreased to ", new_vote);
     }
     
     let db = connect();
     db.prepare(cmnd + " INTO votes VALUES (?,?)").run(id, new_vote);
     db.close();
+
+    return new_vote
 }
+
+module.exports = {
+    viewVote : viewVote,
+    modifyScore : modifyScore
+};
+
+// create();
 
 // console.log("modifying");
 // modifyScore(0, true);
