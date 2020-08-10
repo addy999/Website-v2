@@ -24,7 +24,7 @@
     width: 100%;
     color: white;
     text-align: center;
-    background: rgba(0,0,0,0.75);
+    background: rgba(0,0,0,0.8);
     border-radius: 10px;
     opacity: 0;
     transition: all 0.5s;
@@ -75,4 +75,7 @@
     margin-top: unset;
     border-radius: 15px;
     /* font-size: 1vw; */
+}
+.tag{
+    font-size: 1.5em;
 }

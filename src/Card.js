@@ -35,7 +35,7 @@ class Card extends React.Component {
         onMouseEnter={()=>this.card_id.current.style.opacity=0.8}
         onMouseLeave={()=>this.card_id.current.style.opacity=0}>
           <div className="overlay" ref={this.card_id}>
-            {/* <p className="tag">{data.tag}</p> */}
+            <p className="tag">{data.tag}</p>
             <Vote id={data.id} />
           </div>
           <img className="card-img-top" src={data.img ? data.img : placeholder} alt="Card image" 
