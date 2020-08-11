@@ -90,7 +90,7 @@ class Comments extends React.Component {
             "boxShadow" : "4px 4px 12px 0px rgba(0, 0, 0, 0.75)",
             "display" : "block",
             color : "black",
-            borderRadius: '10px',
+            borderRadius: '10px',            
         }
 
         const title_style = {
@@ -113,7 +113,10 @@ class Comments extends React.Component {
         return (
             // <div style={style} ref={this.ref}>
             <div class="modal fade" role="dialog" ref={this.ref} style={style}>
-            <div class="modal-dialog">
+            <div class="modal-dialog" style={{
+                maxWidth : '50vw',
+                minHeight : '20vh',
+            }}>
             <div class="modal-content">
             {/* <div class="modal-body"> */}
 
@@ -129,9 +132,10 @@ class Comments extends React.Component {
                 </div>
 
                 <div style={feed_style}>
-                    {cmnts ? Object.entries(cmnts).map((t) =>  <Comment time={t[0]} comment={t[1]} />) : ""}
+                    {cmnts ? Object.entries(cmnts).map((t) => <Comment time={t[0]} comment={t[1]} />) : ""}
+                    <p style={{color: 'grey', "display" : cmnts ? cmnts.length == 0 ? "block" : "none" : "none"}}>Be the first comment!</p>
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" style={{padding:0}}>
                 <div className="row form-group" style={input_style}>
                     <input 
                     className="col form-control" 
