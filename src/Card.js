@@ -10,7 +10,8 @@ class Card extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        show_comments : false
+        show_comments : false,
+        id : this.props.data.id,
       }
       this.card_id = React.createRef();
       this.comments_ref = React.createRef();
@@ -83,16 +84,8 @@ class Card extends React.Component {
 
             </div>
         </div>
-        {window.innerWidth < 450 ? 
-        // <div className="row">
-          // <div className="col">
-            <Vote id={data.id} comment_button={this.getCommentButton}/>
-            // </div>
-          // <div className="col">{this.getCommentButton()}</div>
-        // </div>
-        
-        : ""}
-        {this.state.show_comments ? <Comments closeLink={this.closeComments}/> : "" }
+        {window.innerWidth < 450 ? <Vote id={data.id} comment_button={this.getCommentButton}/> : ""}
+        {this.state.show_comments ? <Comments id={this.state.id} closeLink={this.closeComments}/> : "" }
         </>
       )
     }

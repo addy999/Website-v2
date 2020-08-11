@@ -19,9 +19,6 @@ function getComments(id) {
     let res = db.prepare("SELECT * FROM comments WHERE id = ?").all(id);
     db.close();
 
-    // if (res) return [res.score, moment(res.dt)]
-    // else return [null, null]
-
     return res
 }
 
@@ -42,5 +39,5 @@ module.exports = {
 
 // connect();
 // create();
-// addComment(0, "Hello!")
-// getComments(0)
+// addComment(1, "This is the BEST!")
+// console.log(getComments(0));

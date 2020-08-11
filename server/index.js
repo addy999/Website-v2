@@ -3,10 +3,18 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const pino = require('express-pino-logger')();
 const votes = require('./votes');
+const comment_db = require('./comments');
 const moment = require('moment');
 
 const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+)
+
+app.use(bodyParser.json())
 
 const DELAY = 1000; // ms
 
@@ -44,7 +52,34 @@ app.get('/api/upVote', (req, res) => {
 
 // Comment API
 
+function parseComments(comments) {
+  return comments.reduce((acc, row) => {
+    acc[row.dt] = String(row.comment);
+    return acc;
+  }, {});
+}
 
+app.get('/api/getComments', (req, res) => {
+
+  const id = String(req.query.id);
+  const comments = comment_db.getComments(id);
+  
+  res.setHeader('Content-Type', 'application/json');
+  res.send(parseComments(comments));
+})
+
+app.post('/api/submitComment', (req, res) => {
+
+  const id = String(req.body.id);
+  const comment = String(req.body.comment);
+
+  comment_db.addComment(id, comment);
+  let send_back = parseComments(comment_db.getComments(id));
+  
+  // Send refreshed comments back
+  res.setHeader('Content-Type', 'application/json');
+  res.send(send_back);
+})
 
 
 // Start server

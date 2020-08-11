@@ -51,7 +51,7 @@ class Vote extends React.Component {
     }
 
     const comment_button = this.props.comment_button ? this.props.comment_button() : "";
-    console.log(comment_button);
+    // console.log(comment_button);
     if(comment_button) {
       comment_button.props.style.fontSize="1.75em";
       comment_button.props.style.padding="0";
