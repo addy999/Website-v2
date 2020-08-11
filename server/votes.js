@@ -1,9 +1,9 @@
 const Database = require('better-sqlite3');
 const moment = require('moment');
-const DB_PATH = './votes.db';
+const VOTES_DB_PATH = './votes.db';
 
 function connect() {  
-    return new Database(DB_PATH, { verbose: console.log });
+    return new Database(VOTES_DB_PATH, { verbose: console.log });
 }
 
 function create() {
@@ -58,14 +58,3 @@ module.exports = {
     viewVote : viewVote,
     modifyScore : modifyScore
 };
-
-// create();
-
-// console.log("modifying");
-// modifyScore(0, true);
-// console.log("Now", viewVote(0));
-
-// console.log("View...")
-// console.log(viewVote(0));
-// console.log(viewVote(1));
-// console.log(viewVote(2));

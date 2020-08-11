@@ -2,27 +2,22 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const pino = require('express-pino-logger')();
-const db = require('./db');
+const votes = require('./votes');
 const moment = require('moment');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(pino);
 
 const DELAY = 1000; // ms
 
-app.get('/api/greeting', (req, res) => {
-  const name = req.query.name || 'World';
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
-});
+// Vote API
 
 app.get('/api/getVote', (req, res) => {
   const id = String(req.query.id);
-  var [score, dt] = db.viewVote(id);
+  var [score, dt] = votes.viewVote(id);
   if (score==null){
-    // i.e. doesn't exist in db
-    score = db.modifyScore(id); // Create a 0 score and add to db
+    // i.e. doesn't exist in votes
+    score = votes.modifyScore(id); // Create a 0 score and add to votes
   }
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({ score: `${score}` }));
@@ -32,7 +27,7 @@ app.get('/api/upVote', (req, res) => {
 
   const id = String(req.query.id);
   var now = moment().toDate().getTime();
-  let [last_vote, last_vote_dt] = db.viewVote(id);
+  let [last_vote, last_vote_dt] = votes.viewVote(id);
   let skip = false;
 
   if (last_vote_dt){
@@ -41,22 +36,18 @@ app.get('/api/upVote', (req, res) => {
   }
 
   if (skip) var score = last_vote;
-  else var score = db.modifyScore(id, true);
-
-  // if (skip) console.log("SKIPPING");
-  // else console.log("fine");
+  else var score = votes.modifyScore(id, true);
 
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify({ score: `${score}` }));
 })
 
-app.get('/api/downVote', (req, res) => {
-  const id = String(req.query.id);
-  var score = db.modifyScore(id, false);
+// Comment API
 
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({ score: `${score}` }));
-})
+
+
+
+// Start server
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
