@@ -1,6 +1,7 @@
 import React from 'react';
 import Comment from './Comment';
 import $ from 'jquery';
+import { findDOMNode } from 'react-dom';
 require('bootstrap');
 
 class Comments extends React.Component {
@@ -19,8 +20,8 @@ class Comments extends React.Component {
 
     close = () => {
         // this.ref.current.style.display="none";
-        // this.props.closeLink();
-        $('#modal-'+String(this.state.id)).modal("hide");
+        this.props.closeLink();
+        $(findDOMNode(this.ref.current)).modal("hide");
         $('html')[0].style.overflow="";
     }
 
@@ -59,7 +60,7 @@ class Comments extends React.Component {
 
     componentDidMount() {   
         // $('#modal').modal("show");
-        $('#modal-'+String(this.state.id)).modal("hide");
+        $(findDOMNode(this.ref.current)).modal("show");
         this.loadComments();
         $('html')[0].style.overflow="hidden";
         
@@ -86,57 +87,32 @@ class Comments extends React.Component {
         const cmnts = this.state.comments;
 
         const style = {
-            // zIndex : 1050,
-            // "position" : "absolute",
-            // "left" : "50%",
-            // "top" : "50%",
-            // "transform" : "translate(-50%,-50vh)",
-            // "width" : "75vh",
-            // "height" : "50vh",
-            // marginTop: '-25vh',
-            // marginLeft: '-37.5vh',  
-
             "boxShadow" : "4px 4px 12px 0px rgba(0, 0, 0, 0.75)",
-            // "border" : "#96FFF2",
-            // "borderStyle" : "solid",
             "display" : "block",
-            // opacity : "0.8",
-            // "background" : "white",
             color : "black",
             borderRadius: '10px',
-            // top : 50%
         }
 
         const title_style = {
             "font-size" : "2em",
-            "padding" : "2vw 2vw 0 2vw",    
-            // "display" : "table-cell"             
+            "padding" : "2vw 2vw 0 2vw",          
         }
 
         const feed_style = {
-            // "backgroundColor" : "grey",
-            // "width": '100%',
-            // 'position': 'absolute',
-            // 'left': 0,
-            // 'top': '25%',
-            // 'bottom': "10vh",
             'margin': 0,
             "padding" : "2vw",
             "overflow": "auto",
             maxHeight : "50vh"
         }
         const input_style = {
-            // position : "absolute",
-            // left : "2vw",
-            // bottom : "2vh",
             margin : 0,
-            // right:"2vw"
-            padding: '20px'
+            padding: '20px',
+            width: '100%',
         }
 
         return (
             // <div style={style} ref={this.ref}>
-            <div class="modal" id={() => 'modal-'+String(this.state.id)} role="dialog" ref={this.ref} style={style}>
+            <div class="modal fade" role="dialog" ref={this.ref} style={style}>
             <div class="modal-dialog">
             <div class="modal-content">
             {/* <div class="modal-body"> */}
@@ -155,7 +131,7 @@ class Comments extends React.Component {
                 <div style={feed_style}>
                     {cmnts ? Object.entries(cmnts).map((t) =>  <Comment time={t[0]} comment={t[1]} />) : ""}
                 </div>
-                {/* <div class="modal-footer"> */}
+                <div class="modal-footer">
                 <div className="row form-group" style={input_style}>
                     <input 
                     className="col form-control" 
@@ -171,12 +147,10 @@ class Comments extends React.Component {
                     onMouseLeave={()=>this.setState({submitMouse : false})}
                     style={{maxWidth : "fit-content", padding:"10px", margin: 'auto', height : "45px", backgroundColor : this.state.submitMouse ? "#96FFF2" : "#5d9e96"}}
                     onClick={this.submit}
-                    >
-                        Submit
-                    </button>
+                    >Submit</button>
 
                 </div>
-                {/* </div> */}
+                </div>
 
             </div></div></div>
         );

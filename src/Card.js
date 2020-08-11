@@ -22,6 +22,14 @@ class Card extends React.Component {
       })
     }
 
+    getCommentButton = () => {
+      return (
+      <span className="footer-link material-icons" 
+      onClick={() => {this.setState({show_comments : true})}} 
+      style={{"color":"white", "cursor" : "pointer"}}>comment_bank</span>
+      )
+    }
+
     render() {
 
       const {data} = this.props;
@@ -58,12 +66,10 @@ class Card extends React.Component {
             <p className="card-text" id="company">{data.company}<span style={{"float":"right"}}>{date}</span></p>
             <p className="card-text">{desc}</p>
           </div>
-          <div className="card-footer" onClick={() => window.location.href = data.link ? data.link : "javascript:void(0);"} >
 
-              <a className="footer-link" onClick={() => {this.setState({show_comments : true})}}>
-                <i className="material-icons" style={{"color":"white", "cursor" : "pointer"}}>language</i>
-              </a>
-              
+          <div className="card-footer" style={{cursor:"default"}} onClick={() => window.location.href = data.link ?  "javascript:void(0);" : "javascript:void(0);"} >
+
+              {window.innerWidth > 450 ? this.getCommentButton() : ""}
               <a href={data.info} className="footer-link" style={{
                 "opacity" : data.info ? "1" : "0",
                 "cursor" : data.info ? "default!important" : "default!important",
@@ -77,10 +83,16 @@ class Card extends React.Component {
 
             </div>
         </div>
-        {window.innerWidth < 450 ? <Vote id={data.id} /> : ""}
-        {/* {this.state.show_comments ? <Comments closeLink={this.closeComments}/> : "" } */}
-        <Comments/>
-        {/* $('#modal').modal("hide"); */}
+        {window.innerWidth < 450 ? 
+        // <div className="row">
+          // <div className="col">
+            <Vote id={data.id} comment_button={this.getCommentButton}/>
+            // </div>
+          // <div className="col">{this.getCommentButton()}</div>
+        // </div>
+        
+        : ""}
+        {this.state.show_comments ? <Comments closeLink={this.closeComments}/> : "" }
         </>
       )
     }
