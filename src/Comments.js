@@ -1,5 +1,6 @@
 import React from 'react';
 import Comment from './Comment';
+import $ from 'jquery';
 
 class Comments extends React.Component {
 
@@ -7,14 +8,18 @@ class Comments extends React.Component {
       super(props);
       this.state = {
           id : props.id,
-          submitMouse : false
+          submitMouse : false,
+          comments : null
       }
       this.ref = React.createRef();
       this.submit_btn = React.createRef();
+      this.input_ref = React.createRef();
     }
 
     close = () => {
-        this.ref.current.style.display="none";
+        // this.ref.current.style.display="none";
+        this.props.closeLink();
+        $('html')[0].style.overflow="";
     }
 
     sortComments = (cmnts) => {
@@ -25,7 +30,9 @@ class Comments extends React.Component {
         return ordered;
     }
 
-    loadComments= () => {
+    loadComments = () => {
+
+        //Fetch here
         var demo = {
             1597095666 : "Yo this rocks!",
             1597095665 : "Ayy",
@@ -38,26 +45,63 @@ class Comments extends React.Component {
             1597095644 : "Bruh",
             1597095643 : "Bruh",
         };
+
         var sorted = this.sortComments(demo);
-        // console.log(JSON.stringify(sorted));
-        return sorted;
+
+        this.setState({
+            comments : sorted
+        })
+
+        console.log("Loaded.")
+    }
+
+    componentDidMount() {
+        this.loadComments();
+        // $('html')[0].style.overflow="hidden";
+        
+    }
+
+    recordComment = (comment) => {
+        // Post request
+        console.log("Recorded.")
+    }
+
+    submit = (comment) => {
+
+        this.recordComment(comment);
+
+        // Clear 
+        this.input_ref.current.value = ''
+
+        // Reload
+        this.loadComments();
     }
     
     render() {
 
-        var cmnts = this.loadComments();
+        const cmnts = this.state.comments;
 
         const style = {
-            "position" : "relative",
+            zIndex : 1050,
+            "position" : "absolute",
             "left" : "50%",
             "top" : "50%",
-            "transform" : "translate(-50%,50%)",
+            // "transform" : "translate(-50%,-50vh)",
             "width" : "75vh",
             "height" : "50vh",
+            // marginTop: '-25vh',
+            // marginLeft: '-37.5vh',  
+
+
             "boxShadow" : "4px 4px 12px 0px rgba(0, 0, 0, 0.75)",
             // "border" : "#96FFF2",
             // "borderStyle" : "solid",
-            "display" : this.props.display ? "table" : "none",
+            "display" : "table",
+            // opacity : "0.8",
+            "background" : "white",
+            color:"black",
+            borderRadius: '10px',
+            // top : 50%
         }
 
         const title_style = {
@@ -87,32 +131,43 @@ class Comments extends React.Component {
 
         return (
             <div style={style} ref={this.ref}>
+
                 <div style={title_style}>
                     <p className="display-4" style={{"font-size":"inherit", alignContent:"center"}}>Leave feedback 
                     <span 
-                    style={{float:"right", transform: 'translateY(35%)', pointer : "pointer!important"}} 
+                    style={{float:"right", transform: 'translateY(35%)', cursor : "pointer"}} 
                     className="material-icons"
                     onClick={this.close}
                     >close</span>
                     </p>                    
                     <hr></hr>
                 </div>
+
                 <div style={feed_style}>
-                    {Object.entries(cmnts).map((t) =>  <Comment time={t[0]} comment={t[1]} />)}
+                    {cmnts ? Object.entries(cmnts).map((t) =>  <Comment time={t[0]} comment={t[1]} />) : ""}
                 </div>
+
                 <div className="row form-group" style={input_style}>
                     <input 
                     className="col form-control" 
                     type="text"
                     placeholder="Leave feedback for this project"
-                    style={{margin: 'auto', marginRight : "20px", height : "45px" }}></input>
-                    <button className="col btn btn-info"  ref={this.submit_btn}
+                    style={{margin: 'auto', marginRight : "20px", height : "45px" }}
+                    ref = {this.input_ref}
+                    ></input>
+                    <button 
+                    className="col btn btn-info"  
+                    ref={this.submit_btn}
                     onMouseEnter={()=>this.setState({submitMouse : true})}
                     onMouseLeave={()=>this.setState({submitMouse : false})}
-                    style={{maxWidth : "fit-content", padding:"10px", margin: 'auto', height : "45px", backgroundColor : this.state.submitMouse ? "#96FFF2" : "#5d9e96"}}>
+                    style={{maxWidth : "fit-content", padding:"10px", margin: 'auto', height : "45px", backgroundColor : this.state.submitMouse ? "#96FFF2" : "#5d9e96"}}
+                    onClick={this.submit}
+                    >
                         Submit
                     </button>
+
                 </div>
+
             </div>
         );
     }

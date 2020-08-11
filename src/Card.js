@@ -3,12 +3,23 @@ import './css/card.css';
 import placeholder from './assests/placeholder.png';
 import moment from 'moment/moment';
 import Vote from './vote';
+import Comments from './Comments';
 
 class Card extends React.Component {
 
     constructor(props) {
       super(props);
+      this.state = {
+        show_comments : false
+      }
       this.card_id = React.createRef();
+      this.comments_ref = React.createRef();
+    }
+
+    closeComments = () => {
+      this.setState({
+        show_comments : false
+      })
     }
 
     render() {
@@ -49,9 +60,9 @@ class Card extends React.Component {
           </div>
           <div className="card-footer" onClick={() => window.location.href = data.link ? data.link : "javascript:void(0);"} >
 
-              {/* <a href={data.link} className="footer-link" style={{"display" : data.link ? "inline-block" : "none"}}>
-                <i className="material-icons" style={{"color":"white"}}>language</i> */}
-              {/* </a> */}
+              <a className="footer-link" onClick={() => {this.setState({show_comments : true})}}>
+                <i className="material-icons" style={{"color":"white", "cursor" : "pointer"}}>language</i>
+              </a>
               
               <a href={data.info} className="footer-link" style={{
                 "opacity" : data.info ? "1" : "0",
@@ -67,6 +78,7 @@ class Card extends React.Component {
             </div>
         </div>
         {window.innerWidth < 450 ? <Vote id={data.id} /> : ""}
+        {this.state.show_comments ? <Comments closeLink={this.closeComments}/> : "" }
         </>
       )
     }
