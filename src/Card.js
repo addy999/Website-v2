@@ -78,7 +78,9 @@ class Card extends React.Component {
             </div>
         </div>
         {window.innerWidth < 450 ? <Vote id={data.id} /> : ""}
-        {this.state.show_comments ? <Comments closeLink={this.closeComments}/> : "" }
+        {/* {this.state.show_comments ? <Comments closeLink={this.closeComments}/> : "" } */}
+        <Comments/>
+        {/* $('#modal').modal("hide"); */}
         </>
       )
     }

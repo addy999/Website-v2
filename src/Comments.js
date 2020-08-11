@@ -1,6 +1,7 @@
 import React from 'react';
 import Comment from './Comment';
 import $ from 'jquery';
+require('bootstrap');
 
 class Comments extends React.Component {
 
@@ -18,7 +19,8 @@ class Comments extends React.Component {
 
     close = () => {
         // this.ref.current.style.display="none";
-        this.props.closeLink();
+        // this.props.closeLink();
+        $('#modal-'+String(this.state.id)).modal("hide");
         $('html')[0].style.overflow="";
     }
 
@@ -55,9 +57,11 @@ class Comments extends React.Component {
         console.log("Loaded.")
     }
 
-    componentDidMount() {
+    componentDidMount() {   
+        // $('#modal').modal("show");
+        $('#modal-'+String(this.state.id)).modal("hide");
         this.loadComments();
-        // $('html')[0].style.overflow="hidden";
+        $('html')[0].style.overflow="hidden";
         
     }
 
@@ -82,24 +86,23 @@ class Comments extends React.Component {
         const cmnts = this.state.comments;
 
         const style = {
-            zIndex : 1050,
-            "position" : "absolute",
-            "left" : "50%",
-            "top" : "50%",
+            // zIndex : 1050,
+            // "position" : "absolute",
+            // "left" : "50%",
+            // "top" : "50%",
             // "transform" : "translate(-50%,-50vh)",
-            "width" : "75vh",
-            "height" : "50vh",
+            // "width" : "75vh",
+            // "height" : "50vh",
             // marginTop: '-25vh',
             // marginLeft: '-37.5vh',  
-
 
             "boxShadow" : "4px 4px 12px 0px rgba(0, 0, 0, 0.75)",
             // "border" : "#96FFF2",
             // "borderStyle" : "solid",
-            "display" : "table",
+            "display" : "block",
             // opacity : "0.8",
-            "background" : "white",
-            color:"black",
+            // "background" : "white",
+            color : "black",
             borderRadius: '10px',
             // top : 50%
         }
@@ -107,30 +110,36 @@ class Comments extends React.Component {
         const title_style = {
             "font-size" : "2em",
             "padding" : "2vw 2vw 0 2vw",    
-            "display" : "table-cell"             
+            // "display" : "table-cell"             
         }
 
         const feed_style = {
             // "backgroundColor" : "grey",
-            "width": '100%',
-            'position': 'absolute',
-            'left': 0,
-            'top': '25%',
-            'bottom': "10vh",
+            // "width": '100%',
+            // 'position': 'absolute',
+            // 'left': 0,
+            // 'top': '25%',
+            // 'bottom': "10vh",
             'margin': 0,
             "padding" : "2vw",
-            "overflow": "auto"
+            "overflow": "auto",
+            maxHeight : "50vh"
         }
         const input_style = {
-            position : "absolute",
-            left : "2vw",
-            bottom : "2vh",
+            // position : "absolute",
+            // left : "2vw",
+            // bottom : "2vh",
             margin : 0,
-            right:"2vw"
+            // right:"2vw"
+            padding: '20px'
         }
 
         return (
-            <div style={style} ref={this.ref}>
+            // <div style={style} ref={this.ref}>
+            <div class="modal" id={() => 'modal-'+String(this.state.id)} role="dialog" ref={this.ref} style={style}>
+            <div class="modal-dialog">
+            <div class="modal-content">
+            {/* <div class="modal-body"> */}
 
                 <div style={title_style}>
                     <p className="display-4" style={{"font-size":"inherit", alignContent:"center"}}>Leave feedback 
@@ -146,7 +155,7 @@ class Comments extends React.Component {
                 <div style={feed_style}>
                     {cmnts ? Object.entries(cmnts).map((t) =>  <Comment time={t[0]} comment={t[1]} />) : ""}
                 </div>
-
+                {/* <div class="modal-footer"> */}
                 <div className="row form-group" style={input_style}>
                     <input 
                     className="col form-control" 
@@ -167,8 +176,9 @@ class Comments extends React.Component {
                     </button>
 
                 </div>
+                {/* </div> */}
 
-            </div>
+            </div></div></div>
         );
     }
   }

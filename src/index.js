@@ -8,12 +8,14 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Landing from './Landing';
 import Projects from './Projects';
 import Footer from './Footer';
+import Comments from './Comments';
 
 ReactDOM.render(
   <>
-    <Landing />
+    {/* <Landing /> */}
     <Projects />
     <Footer />
+    {/* <Comments/> */}
   </>,
   document.getElementById('root')
 );
