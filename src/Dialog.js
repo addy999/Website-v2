@@ -89,21 +89,25 @@ class Dialog  extends React.Component {
                 </div>
 
                 <div className="row" style={{
-                    padding: '10px 10vw',
+                    padding: '2vw',
+                    margin : "auto"
                 }}>
                     {data.info ? <button 
                     className="col btn btn-info"  
                     ref={this.learn_btn}
                     onMouseEnter={()=>this.setState({learnMouse : true})}
                     onMouseLeave={()=>this.setState({learnMouse : false})}
-                    style={{maxWidth : "fit-content", padding:"10px", margin: 'auto', fontSize:'1em', backgroundColor : this.state.learnMouse ? "rgb(58 94 89)" : "#5d9e96"}}
+                    style={{maxWidth : "fit-content", padding:"10px 15px", margin: '0 2vw', fontSize:'1em', backgroundColor : this.state.learnMouse ? "rgb(58 94 89)" : "#5d9e96"}}
                     onClick={() => window.location.href=data.info}>Learn more</button> : ""}
+
                     {data.link ? <button 
-                    className="col btn btn-info"  
+                    className="col btn btn-light"  
                     ref={this.visit_btn}
                     onMouseEnter={()=>this.setState({submitMouse : true})}
                     onMouseLeave={()=>this.setState({submitMouse : false})}
-                    style={{maxWidth : "fit-content", padding:"10px", margin: 'auto', fontSize:'1em', backgroundColor : this.state.submitMouse ? "rgb(58 94 89)" : "#5d9e96"}}
+                    style={{maxWidth : "fit-content", padding:"10px 15px", margin: '0 2vw', fontSize:'1em', 
+                    // backgroundColor : this.state.submitMouse ? "rgb(58 94 89)" : "#5d9e96"
+                }}
                     onClick={() => window.location.href=data.link}>Visit</button> : ""}
                 </div>
 
