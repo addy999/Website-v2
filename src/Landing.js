@@ -26,12 +26,6 @@ class Landing extends React.Component {
       }
     }
 
-    componentDidMount() {
-      // $.scrollify({
-      //   section : ".section",
-      // });
-    }
-
     stars_visible = () => {
       return {
         "opacity" : this.state.mouseover ? 1 : 0,
@@ -75,9 +69,9 @@ class Landing extends React.Component {
             <p className="desc-text">Nice to see you, it's been a while.</p>
             <p className="desc-text bold blue">Full-stack and Software Dev.</p>
             <p className="desc-text">
-              I like
+              I've launched stuff into
               <span style={{'display': 'inline-block', "padding" : "0 10px"}} className={this.state.mouseover ? "blue" : animate_class} onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}> space,</span> 
-               Toronto, and the gym.
+               and now I'm launching a career in software.
             </p>
             <p className="desc-text">Explore my projects and give a shout.</p>
 
