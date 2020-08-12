@@ -147,7 +147,7 @@ class Comments extends React.Component {
                 // minHeight : '20vh',
             }}>
             <div class="modal-content" style={{
-                background: 'rgba(0,0,0,0.9)',
+                background: 'rgba(0,0,0,1)',
                 color: 'white'
             }}>
 

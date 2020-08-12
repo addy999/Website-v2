@@ -8,14 +8,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Landing from './Landing';
 import Projects from './Projects';
 import Footer from './Footer';
-import Comments from './Comments';
+import Dialog from './Dialog';
 
 ReactDOM.render(
   <>
-    {/* <Landing /> */}
+    {/* <Landing />
     <Projects />
-    <Footer />
-    {/* <Comments/> */}
+    <Footer /> */}
+    <Dialog data={{
+      role : "Software Developer",
+      company : "Loft Orbital Inc.",
+      link : "https://www.loftorbital.com",
+      info : "https://www.medium.com/@baetia"
+      }}/>
   </>,
   document.getElementById('root')
 );
