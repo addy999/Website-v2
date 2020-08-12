@@ -51,7 +51,7 @@ class Vote extends React.Component {
     }
 
     const comment_button = this.props.comment_button ? this.props.comment_button() : "";
-    // console.log(comment_button);
+    // Fix for mobile
     if(comment_button) {
       comment_button.props.style.fontSize="1.75em";
       comment_button.props.style.padding="0";
@@ -75,9 +75,6 @@ class Vote extends React.Component {
             onMouseLeave={()=>this.thumbsUp.current.style.color="white"}
             onClick={this.upVote}>thumb_up</span>
             <span style={{"font-size" : "1.75em"}} className={mobile ? "col-3 display-4" : "col display-4"}>{this.state.score}</span>            
-            {/* <span style={thumb_style} ref={this.thumbsDown} className="material-icons col"
-            onMouseEnter={()=>this.thumbsDown.current.style.color="#96FFF2"}
-            onMouseLeave={()=>this.thumbsDown.current.style.color="white"}onClick={this.downVote}>thumb_down</span> */}
         </div>
     )
   }

@@ -27,13 +27,14 @@ class Card extends React.Component {
       return (
       <span className="footer-link material-icons" 
       onClick={() => {this.setState({show_comments : true})}} 
-      style={{"color":"white", "cursor" : "pointer"}}>comment_bank</span>
+      style={{"color":"white", "cursor" : "pointer"}}>mode_comment</span>
       )
     }
 
     render() {
 
       const {data} = this.props;
+      const dialog_link = data.link;
 
       let tech = data.tech.split(",");
       window.innerWidth < 450 ? tech.splice(2) : tech.splice(3) // Only keep the first 2 or 3 tags due to space
@@ -50,41 +51,58 @@ class Card extends React.Component {
 
       return (
         <>
-        <div className="card" 
-        style={{"cursor" : data.link ? "pointer" : "unset"}}
-        onMouseEnter={()=>this.card_id.current.style.opacity=0.8}
-        onMouseLeave={()=>this.card_id.current.style.opacity=0}>
+        <div 
+          className="card" 
+          onMouseEnter={()=>this.card_id.current.style.opacity=0.8}
+          onMouseLeave={()=>this.card_id.current.style.opacity=0}>
+
+          {/* Overlay only for desktop */}
           <div className="overlay" ref={this.card_id} style={{"display" : window.innerWidth > 450 ? "block" : "none"}}>
             <p className="tag">{data.tag}</p>
             <Vote id={data.id} />
           </div>
-          <img className="card-img-top" src={data.img ? data.img : placeholder} alt="Card image" 
-          style={{"cursor" : "unset"}}></img>
-          {/* onClick={() => window.location.href = data.link && window.innerWidth > 450 ? data.link : "javascript:void(0);"}>
-          </img> */}
-          <div className="card-body" onClick={() => window.location.href = data.link ? data.link : "javascript:void(0);"} >
+
+          {/* Image is just image, no clicking. Unless on mobile, then click like body. */}
+          <img className="card-img-top" 
+          src={data.img ? data.img : placeholder} 
+          alt="Card image"
+          onClick={() => window.location.href = dialog_link && window.innerWidth<450 ? dialog_link : "javascript:void(0);"}
+          style={{cursor :  window.innerWidth<450 ? "pointer" : "default"}}></img>
+
+          {/* Only click on body to open dialog. Cursor : pointer */}
+          <div className="card-body" onClick={() => window.location.href = dialog_link ? dialog_link : "javascript:void(0);"} >
             <h5 className="card-title">{data.role}</h5>
             <p className="card-text" id="company">{data.company}<span style={{"float":"right"}}>{date}</span></p>
             <p className="card-text">{desc}</p>
           </div>
 
-          <div className="card-footer" style={{cursor:"default"}} onClick={() => window.location.href = data.link ?  "javascript:void(0);" : "javascript:void(0);"} >
+          {/* 
+          No click on footer.
+          Footer contains comment button (desktop only) and tech tags.
+           */}
+          <div className="card-footer">
 
               {window.innerWidth > 450 ? this.getCommentButton() : ""}
-              <a href={data.info} className="footer-link" style={{
+
+              {/* <a href={data.info} className="footer-link" style={{
                 "opacity" : data.info ? "1" : "0",
                 "cursor" : data.info ? "default!important" : "default!important",
                 }}>
                 <i className="material-icons" style={{"color":"white"}}>info</i>
-              </a>
+              </a> */}
 
               {
                 tech.map( t=> <p className="footer-link tech">{t}</p>)
               }
 
             </div>
+        
         </div>
+        
+        {/* Mobile only : render vote under card and add comment beside it  */}
         {window.innerWidth < 450 ? <Vote id={data.id} comment_button={this.getCommentButton}/> : ""}
+
+        {/* Render comment dialog on top of everything - only shows up if clickec on comment button*/}
         {this.state.show_comments ? <Comments id={this.state.id} closeLink={this.closeComments}/> : "" }
         </>
       )
