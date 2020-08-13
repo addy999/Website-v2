@@ -66,7 +66,7 @@ class Landing extends React.Component {
               Addy <span className="blue">Bhatia</span>
             </h1>
             <br></br>
-            <p className="desc-text">Nice to see you, it's been a while.</p>
+            <p className="desc-text">From coding to photography, I'm always finding new hobbies.</p>
             <p className="desc-text bold blue">Full-stack and Software Dev.</p>
             <p className="desc-text">
               I've launched stuff into
