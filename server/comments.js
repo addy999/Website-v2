@@ -37,7 +37,7 @@ module.exports = {
 };
 
 
-// connect();
-// create();
+//connect();
+//create();
 // addComment(1, "This is the BEST!")
 // console.log(getComments(0));

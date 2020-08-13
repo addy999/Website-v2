@@ -12,15 +12,15 @@ import Dialog from './Dialog';
 
 ReactDOM.render(
   <>
-    {/* <Landing />
+    <Landing />
     <Projects />
-    <Footer /> */}
-    <Dialog data={{
+    <Footer />
+    {/* <Dialog data={{
       role : "Software Developer",
       company : "Loft Orbital Inc.",
       link : "https://www.loftorbital.com",
       info : "https://www.medium.com/@baetia"
-      }}/>
+      }}/> */}
   </>,
   document.getElementById('root')
 );
