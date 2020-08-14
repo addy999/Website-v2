@@ -1,9 +1,13 @@
 import React from 'react';
 import Comment from './Comment';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Icon from '@material-ui/core/Icon';
 import $ from 'jquery';
 import { findDOMNode } from 'react-dom';
 import axios from 'axios';
 require('bootstrap');
+
 
 class Comments extends React.Component {
 
@@ -87,17 +91,6 @@ class Comments extends React.Component {
         
     }
 
-    // scrollToBottom = () => {
-
-    //     this.lastComment.current.scrollIntoView({ behavior: 'smooth', block: "end"});
-
-    //     // var element = document.getElementById("feed");
-    //     // element.scrollTop = element.scrollHeight;
-
-    //     // let element = findDOMNode(this.bottomRef.current);
-    //     // element.scrollTop = element.scrollHeight;
-    // }
-
     submit = (event) => {
 
         event.preventDefault();
@@ -117,12 +110,6 @@ class Comments extends React.Component {
 
         const cmnts = this.state.comments;
 
-        const style = {
-            "boxShadow" : "4px 4px 12px 0px rgba(0, 0, 0, 0.75)",
-            "display" : "block",
-            color : "black",
-            borderRadius: '10px',            
-        }
         const title_style = {
             "font-size" : "2em",
             "padding" : "2vw 2vw 0 2vw",          
@@ -141,16 +128,12 @@ class Comments extends React.Component {
         }
 
         return (
-            <div class="modal fade" role="dialog" ref={this.ref} style={style}>
+            <div class="modal fade" role="dialog" ref={this.ref} style={{"display" : "block"}}>
             <div class="modal-dialog modal-dialog-centered" style={{
                 maxWidth : '50vw',
                 // minHeight : '20vh',
             }}>
-            <div class="modal-content" style={{
-                // background: 'rgba(0,0,0,1)',
-                background: 'radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)',
-                color: 'white'
-            }}>
+            <div class="modal-content">
 
                 <div style={title_style}>
                     <p className="display-4" style={{"font-size":"inherit", alignContent:"center"}}>Leave feedback 
@@ -176,6 +159,7 @@ class Comments extends React.Component {
                 </div>
                 <div class="modal-footer" style={{padding : 0, borderColor : '#96FFF2'}}>
                 <div className="row form-group" style={input_style}>
+
                     <input 
                     className="col form-control" 
                     type="text"
@@ -184,14 +168,23 @@ class Comments extends React.Component {
                     ref = {this.input_ref}
                     onKeyDown={(e) => {if(e.keyCode === 13) this.submit(e)}}
                     ></input>
-                    <button 
-                    className="col btn btn-info"  
+
+                    {/* <TextField 
+                    id="standard-basic" 
+                    className="col" 
+                    label="Leave feedback for this project"  
+                    style={{margin: 'auto', marginRight : "20px", height : "45px" }}
+                    ref = {this.input_ref}
+                    onKeyDown={(e) => {if(e.keyCode === 13) this.submit(e)}} /> */}
+
+
+                    <Button 
+                    variant="contained"
+                    className="col"  
                     ref={this.submit_btn}
-                    onMouseEnter={()=>this.setState({submitMouse : true})}
-                    onMouseLeave={()=>this.setState({submitMouse : false})}
-                    style={{maxWidth : "fit-content", padding:"10px", margin: 'auto', height : "45px", backgroundColor : this.state.submitMouse ? "rgb(58 94 89)" : "#5d9e96"}}
+                    style={{maxWidth : "fit-content", padding:"10px", margin: 'auto', height : "45px" }}
                     onClick={this.submit}
-                    ><span className="material-icons" style={{fontSize : '1em', marginRight : '10px'}}>done</span>Submit</button>
+                    endIcon={<Icon>send</Icon>}>Submit</Button>
 
                 </div>
                 </div>

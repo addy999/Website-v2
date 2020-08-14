@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 import './css/card.css';
 import placeholder from './assests/placeholder.png';
 import moment from 'moment/moment';
@@ -36,6 +38,9 @@ class Card extends React.Component {
       <span className="footer-link material-icons" 
       onClick={() => {this.setState({showComments : true})}} 
       style={{"color":"white", "cursor" : "pointer"}}>mode_comment</span>
+      // <Button className="footer-link" onClick={() => {this.setState({showComments : true})}}  style={{"color":"white", "cursor" : "pointer"}}>
+      //   <Icon>mode_comment</Icon>
+      // </Button>
       )
     }
 
@@ -95,15 +100,8 @@ class Card extends React.Component {
 
               {window.innerWidth > 450 ? this.getCommentButton() : ""}
 
-              {/* <a href={data.info} className="footer-link" style={{
-                "opacity" : data.info ? "1" : "0",
-                "cursor" : data.info ? "default!important" : "default!important",
-                }}>
-                <i className="material-icons" style={{"color":"white"}}>info</i>
-              </a> */}
-
               {
-                tech.map( t=> <p className="footer-link tech">#{t}</p>)
+                tech.map( t=> <p className="footer-link tech">#{t.replace(/\s/g, '')}</p>)
               }
 
             </div>

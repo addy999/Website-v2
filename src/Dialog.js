@@ -1,4 +1,7 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Icon from '@material-ui/core/Icon';
 import $ from 'jquery';
 import { findDOMNode } from 'react-dom';
 import axios from 'axios';
@@ -50,12 +53,11 @@ class Dialog  extends React.Component {
     render() {
 
         const data = this.props.data;
-        const buttonIcon = <span className="material-icons leave-btn">south_east</span>
 
         return (
             <div id="dialog" class="modal fade" role="dialog" ref={this.ref}>
                 <div class="modal-dialog modal-dialog-centered" style={{maxWidth : '50vw'}}>
-                    <div id="dialog-content" class="modal-content">
+                    <div class="modal-content">
 
                         <div id="dialog-title">
                             <p className="display-4" style={{"font-size":"2em", alignContent:"center", color:"#96FFF2"}}>{data.role}
@@ -65,15 +67,23 @@ class Dialog  extends React.Component {
                                 onMouseEnter={()=>this.setState({closeMouse : true})}
                                 onMouseLeave={()=>this.setState({closeMouse : false})}
                                 >close</span>
-                            </p>                
-                            <p style={{
-                                "font-size":"1em", 
-                                alignContent:"center",
-                                color :"grey"}}>{data.company}
-                                <span style={{float:"right"}}>
+                            </p>   
+                            <div className="row" style={{color :"grey"}}>         
+                                <p className="col" style={{
+                                    "font-size":"1em", 
+                                    alignContent:"center",
+                                    }}>{data.company}
+                                </p>
+                                <span className="col" style={{maxWidth:"fit-content"}}>
                                     {this.props.dateStr}
-                                </span>
-                            </p>    
+                                </span>                                    
+                            </div>    
+
+                            <div className="row" id="skills-row">
+                                {data.tech.split(",").map( t=> <span class="tech col skill">+ {t} 
+                                </span>)}
+                            </div>
+
                             <hr style={{backgroundColor : '#96FFF2'}}></hr>
                         </div>
 
@@ -93,21 +103,21 @@ class Dialog  extends React.Component {
                         </div>
 
                         <div className="row" style={{padding: '2vw', margin : "auto"}}>
-                            {data.info ? 
-                            <button 
-                            className="col btn btn-light dialog-btns"  
-                            ref={this.learn_btn}
-                            onClick={() => window.location.href=data.info}>
-                                Learn more {buttonIcon}
-                            </button> : ""}
+                            <ButtonGroup variant="contained"aria-label="contained primary button group">
+                                {data.info ? 
+                                <Button 
+                                variant="contained"
+                                className="dialog-btns" 
+                                onClick={() => window.location.href=data.info}
+                                endIcon={<Icon>link</Icon>}>Learn more</Button>: ""}
 
-                            {data.link ? 
-                            <button 
-                            className="col btn btn-light dialog-btns"   
-                            ref={this.visit_btn}
-                            onClick={() => window.location.href=data.link}>
-                                Visit {buttonIcon}
-                            </button> : ""}
+                                {data.link ? 
+                                <Button 
+                                variant="contained"
+                                className="dialog-btns"  
+                                onClick={() => window.location.href=data.link}
+                                endIcon={<Icon>link</Icon>}>Visit</Button>: ""}
+                            </ButtonGroup>
                         </div>
 
                     </div>

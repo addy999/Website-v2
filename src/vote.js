@@ -70,6 +70,7 @@ class Vote extends React.Component {
             "margin" : mobile ? "5vh 0" : "",
         }}>
             {comment_button}
+            {/* TODO: Add down vote after clicking twice */}
             <span style={thumb_style} ref={this.thumbsUp} className={mobile ? "material-icons col-3" : "material-icons col"} 
             onMouseEnter={()=>this.thumbsUp.current.style.color="#96FFF2"}
             onMouseLeave={()=>this.thumbsUp.current.style.color="white"}

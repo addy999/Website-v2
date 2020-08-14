@@ -15,10 +15,15 @@
 #dialog-title {
     padding : 2vw 2vw 0 2vw;  
 }
-#dialog-content {
-    /* background: rgba(0,0,0,1); */
-    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-    color: white;
+
+#skills-row {
+    padding: 0 10vw;
+}
+
+.skill {
+    text-align: center;
+    /* font-size : 0.8em; */
+    padding: 5px;
 }
 
 .leave-btn {
@@ -28,10 +33,10 @@
 }
 
 .dialog-btns {
-    max-width : fit-content;
-    padding : 10px 15px; 
+    /* max-width : fit-content; */
+    /* padding : 10px 15px;  */
     margin : 0 2vw; 
-    font-size : 1em;
+    /* font-size : 1em; */
 }
 
 .info-head {
@@ -54,6 +59,8 @@
 
 .slide {
     margin: 2vh 0 0 0;
+    max-width : fit-content;
+    padding: 20px;
 }
 
 @media (max-width : 1024px) {

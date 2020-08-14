@@ -17,17 +17,6 @@ ReactDOM.render(
     {/* <Landing /> */}
     <Projects />
     {/* <Footer /> */}
-    {/* <Dialog dateStr="Sep 2019 - Present" data={{
-      role : "Software Developer",
-      company : "Loft Orbital Inc.",
-      link : "https://www.loftorbital.com",
-      info : "https://www.medium.com/@baetia",
-      tldr : "Killed it, Smashed it, Bopped it",
-      img1 : "https://via.placeholder.com/350",
-      p1 : demoP,
-      p2 : demoP,
-      p3 : demoP
-      }}/> */}
   </>,
   document.getElementById('root')
 );
