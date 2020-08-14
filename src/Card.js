@@ -4,13 +4,15 @@ import placeholder from './assests/placeholder.png';
 import moment from 'moment/moment';
 import Vote from './vote';
 import Comments from './Comments';
+import Dialog from './Dialog';
 
 class Card extends React.Component {
 
     constructor(props) {
       super(props);
       this.state = {
-        show_comments : false,
+        showComments : false,
+        showDialog : false,
         id : this.props.data.id,
       }
       this.card_id = React.createRef();
@@ -19,14 +21,20 @@ class Card extends React.Component {
 
     closeComments = () => {
       this.setState({
-        show_comments : false
+        showComments : false
+      })
+    }
+
+    closeDialog = () => {
+      this.setState({
+        showDialog : false
       })
     }
 
     getCommentButton = () => {
       return (
       <span className="footer-link material-icons" 
-      onClick={() => {this.setState({show_comments : true})}} 
+      onClick={() => {this.setState({showComments : true})}} 
       style={{"color":"white", "cursor" : "pointer"}}>mode_comment</span>
       )
     }
@@ -70,7 +78,10 @@ class Card extends React.Component {
           style={{cursor :  window.innerWidth<450 ? "pointer" : "default"}}></img>
 
           {/* Only click on body to open dialog. Cursor : pointer */}
-          <div className="card-body" onClick={() => window.location.href = dialog_link ? dialog_link : "javascript:void(0);"} >
+          <div className="card-body" onClick={() => 
+            this.setState({showDialog : true})
+            // window.location.href = dialog_link ? dialog_link : "javascript:void(0);"
+            } >
             <h5 className="card-title">{data.role}</h5>
             <p className="card-text" id="company">{data.company}<span style={{"float":"right"}}>{date}</span></p>
             <p className="card-text">{desc}</p>
@@ -105,7 +116,11 @@ class Card extends React.Component {
         /> : ""}
 
         {/* Render comment dialog on top of everything - only shows up if clickec on comment button*/}
-        {this.state.show_comments ? <Comments id={this.state.id} closeLink={this.closeComments}/> : "" }
+        {this.state.showComments ? <Comments id={this.state.id} closeLink={this.closeComments}/> : "" }
+
+        {/* Render dialog on top of everything - only shows up if clicked on card body*/}
+        {this.state.showDialog ? <Dialog dateStr = {date} data={data} closeLink={this.closeDialog} /> : "" }
+
         </>
       )
     }

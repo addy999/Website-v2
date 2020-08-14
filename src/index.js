@@ -14,10 +14,10 @@ const demoP = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do e
 
 ReactDOM.render(
   <>
-    {/* <Landing />
+    {/* <Landing /> */}
     <Projects />
-    <Footer /> */}
-    <Dialog dateStr="Sep 2019 - Present" data={{
+    {/* <Footer /> */}
+    {/* <Dialog dateStr="Sep 2019 - Present" data={{
       role : "Software Developer",
       company : "Loft Orbital Inc.",
       link : "https://www.loftorbital.com",
@@ -27,7 +27,7 @@ ReactDOM.render(
       p1 : demoP,
       p2 : demoP,
       p3 : demoP
-      }}/>
+      }}/> */}
   </>,
   document.getElementById('root')
 );

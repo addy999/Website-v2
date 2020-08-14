@@ -86,9 +86,9 @@ class Dialog  extends React.Component {
                                  </>:""
                             }   
                             
-                            {this.renderSlide("The Challenge", data.p1, data.img1, "Rad ayy bitch")}
-                            {this.renderSlide("The Process", data.p2, data.img2)}
-                            {this.renderSlide("The Solution", data.p3, data.img3)}
+                            {this.renderSlide("The Challenge", data.p1, data.img1, data.img1Caption)}
+                            {this.renderSlide("The Process", data.p2, data.img2, data.img2Caption)}
+                            {this.renderSlide("The Solution", data.p3, data.img3, data.img3Caption)}
 
                         </div>
 
