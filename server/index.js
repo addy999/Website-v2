@@ -50,6 +50,15 @@ app.get('/api/upVote', (req, res) => {
   res.send(JSON.stringify({ score: `${score}` }));
 })
 
+app.get('/api/downVote', (req, res) => {
+
+  const id = String(req.query.id);
+  var score = votes.modifyScore(id, false);
+
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify({ score: `${score}` }));
+})
+
 // Comment API
 
 function parseComments(comments) {
