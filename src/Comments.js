@@ -147,7 +147,8 @@ class Comments extends React.Component {
                 // minHeight : '20vh',
             }}>
             <div class="modal-content" style={{
-                background: 'rgba(0,0,0,1)',
+                // background: 'rgba(0,0,0,1)',
+                background: 'radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)',
                 color: 'white'
             }}>
 
@@ -190,7 +191,7 @@ class Comments extends React.Component {
                     onMouseLeave={()=>this.setState({submitMouse : false})}
                     style={{maxWidth : "fit-content", padding:"10px", margin: 'auto', height : "45px", backgroundColor : this.state.submitMouse ? "rgb(58 94 89)" : "#5d9e96"}}
                     onClick={this.submit}
-                    >Submit</button>
+                    ><span className="material-icons" style={{fontSize : '1em', marginRight : '10px'}}>done</span>Submit</button>
 
                 </div>
                 </div>

@@ -16,7 +16,8 @@
     padding : 2vw 2vw 0 2vw;  
 }
 #dialog-content {
-    background: rgba(0,0,0,1);
+    /* background: rgba(0,0,0,1); */
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     color: white;
 }
 
