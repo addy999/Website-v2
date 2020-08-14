@@ -50,7 +50,7 @@ class Card extends React.Component {
       const dialog_link = data.link;
 
       let tech = data.tech.split(",");
-      window.innerWidth < 450 ? tech.splice(2) : tech.splice(3) // Only keep the first 2 or 3 tags due to space
+      tech.splice(3) // Only keep the first 3 tags due to space
 
       let desc = data.description; 
       
