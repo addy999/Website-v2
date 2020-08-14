@@ -103,7 +103,7 @@ class Card extends React.Component {
               </a> */}
 
               {
-                tech.map( t=> <p className="footer-link tech">{t}</p>)
+                tech.map( t=> <p className="footer-link tech">#{t}</p>)
               }
 
             </div>
