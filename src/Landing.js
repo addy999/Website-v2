@@ -35,7 +35,7 @@ class Landing extends React.Component {
 
     render() {
 
-      const animate_class = "animate__animated animate__pulse animate__infinite infinite";
+      const animate_class = "animate__animated animate__pulse animate__fast animate__infinite infinite";
 
       return (
         <div className="Landing section">
