@@ -9,8 +9,6 @@ import email from './assests/email.png';
 import './css/Landing.css';
 import './css/stars2.css';
 import 'animate.css/animate.css';
-import $ from 'jquery';
-import 'jquery-scrollify/jquery.scrollify';
 
 import Projects from './Projects';
 import { findDOMNode } from 'react-dom';
