@@ -10,17 +10,24 @@ import Projects from './Projects';
 import Footer from './Footer';
 import Dialog from './Dialog';
 
+const demoP = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris commodo quis imperdiet massa tincidunt nunc pulvinar sapien. Diam maecenas ultricies mi eget mauris pharetra. Elementum nisi quis eleifend quam adipiscing vitae proin.";
+
 ReactDOM.render(
   <>
-    <Landing />
+    {/* <Landing />
     <Projects />
-    <Footer />
-    {/* <Dialog data={{
+    <Footer /> */}
+    <Dialog dateStr="Sep 2019 - Present" data={{
       role : "Software Developer",
       company : "Loft Orbital Inc.",
       link : "https://www.loftorbital.com",
-      info : "https://www.medium.com/@baetia"
-      }}/> */}
+      info : "https://www.medium.com/@baetia",
+      tldr : "Killed it, Smashed it, Bopped it",
+      img1 : "https://via.placeholder.com/350",
+      p1 : demoP,
+      p2 : demoP,
+      p3 : demoP
+      }}/>
   </>,
   document.getElementById('root')
 );

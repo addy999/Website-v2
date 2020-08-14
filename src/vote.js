@@ -70,11 +70,11 @@ class Vote extends React.Component {
             "margin" : mobile ? "5vh 0" : "",
         }}>
             {comment_button}
-            <span style={thumb_style} ref={this.thumbsUp} className={mobile ? "material-icons col" : "material-icons col"} 
+            <span style={thumb_style} ref={this.thumbsUp} className={mobile ? "material-icons col-3" : "material-icons col"} 
             onMouseEnter={()=>this.thumbsUp.current.style.color="#96FFF2"}
             onMouseLeave={()=>this.thumbsUp.current.style.color="white"}
             onClick={this.upVote}>thumb_up</span>
-            <span style={{"font-size" : "1.75em"}} className={mobile ? "col display-4" : "col display-4"}>{this.state.score}</span>            
+            <span style={{"font-size" : "1.75em"}} className={mobile ? "col-3 display-4" : "col display-4"}>{this.state.score}</span>            
         </div>
     )
   }

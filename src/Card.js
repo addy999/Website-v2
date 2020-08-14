@@ -82,14 +82,14 @@ class Card extends React.Component {
            */}
           <div className="card-footer">
 
-              {/* {window.innerWidth > 450 ? this.getCommentButton() : ""} */}
+              {window.innerWidth > 450 ? this.getCommentButton() : ""}
 
-              <a href={data.info} className="footer-link" style={{
+              {/* <a href={data.info} className="footer-link" style={{
                 "opacity" : data.info ? "1" : "0",
                 "cursor" : data.info ? "default!important" : "default!important",
                 }}>
                 <i className="material-icons" style={{"color":"white"}}>info</i>
-              </a>
+              </a> */}
 
               {
                 tech.map( t=> <p className="footer-link tech">{t}</p>)
@@ -101,11 +101,11 @@ class Card extends React.Component {
         
         {/* Mobile only : render vote under card and add comment beside it  */}
         {window.innerWidth < 450 ? <Vote id={data.id} 
-        // comment_button={this.getCommentButton}
+        comment_button={this.getCommentButton}
         /> : ""}
 
         {/* Render comment dialog on top of everything - only shows up if clickec on comment button*/}
-        {/* {this.state.show_comments ? <Comments id={this.state.id} closeLink={this.closeComments}/> : "" } */}
+        {this.state.show_comments ? <Comments id={this.state.id} closeLink={this.closeComments}/> : "" }
         </>
       )
     }
