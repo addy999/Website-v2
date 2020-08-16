@@ -65,14 +65,14 @@ class Dp extends React.Component {
 
     get_collage_style = (i) => {     
 
-        let transform = this.state.mouseover && this.state.width >=450 ? this.after_transform[i] : this.before_transform;
+        let transform = this.state.mouseover && this.state.width >=641 ? this.after_transform[i] : this.before_transform;
         return { ...this.base_collage_style, ...transform};
     }
 
     get_dp_style = () => {     
         return { 
             ...this.base_dp_img_style, 
-            ...{"filter" : this.state.mouseover && this.state.width >=450 ? "brightness(20%)" : "brightness(100%)"},
+            ...{"filter" : this.state.mouseover && this.state.width >=641 ? "brightness(20%)" : "brightness(100%)"},
             ...{"width" : this.state.width < 800 ? this.state.width < 450 ? '55vw' : '30vw' : '25vw'},
         };
     }
@@ -82,7 +82,7 @@ class Dp extends React.Component {
         const placeholder = "https://via.placeholder.com/250";
 
         return (
-            <figure style={{...{"width": "fit-content", "margin": "auto"}, ...{"paddingTop" : this.state.width >= 450 ? '' : ''}}}onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}>
+            <figure style={{...{"width": "fit-content", "margin": "auto"}, ...{"paddingTop" : this.state.width >= 641 ? '' : ''}}}onMouseEnter={() => this.setState({mouseover:true})} onMouseLeave={() => this.setState({mouseover:false})}>
 
                 {/* Collage overlay */}
                 <img style={this.get_collage_style(0)} src={grad}></img>

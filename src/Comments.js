@@ -1,8 +1,6 @@
 import React from 'react';
 import Comment from './Comment';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Icon from '@material-ui/core/Icon';
+import { ClickAwayListener , Button, TextField, Icon } from '@material-ui/core';
 import $ from 'jquery';
 import { findDOMNode } from 'react-dom';
 import axios from 'axios';
@@ -28,9 +26,11 @@ class Comments extends React.Component {
 
     close = () => {
         // this.ref.current.style.display="none";
+
         this.props.closeLink();
         $(findDOMNode(this.ref.current)).modal("hide");
         $('html')[0].style.overflow="";
+        console.log("CLOSED");
     }
 
     objEmpty = (obj) => {
@@ -57,17 +57,14 @@ class Comments extends React.Component {
             comments : this.objEmpty(res) ? null : this.sortComments(res)
         }))
         // .then(
-        //     // console.log("done"),
-        //     this.scrollToBottom()
-        // );
-
-        // console.log("Loaded.")
+        //     this.props.updateCount(this.state.comments ? this.state.comments.length : 0)
+        // )
     }
 
     componentDidMount() {   
         $(findDOMNode(this.ref.current)).modal("show");
-        this.loadComments();        
         $('html')[0].style.overflow="hidden";
+        this.loadComments();          
         
     }
 
@@ -127,12 +124,15 @@ class Comments extends React.Component {
             width: '100%',
         }
 
+        const mobile_1 = window.innerWidth < 1025;
+        const mobile_2 = window.innerWidth < 641;
+        const mobile_3 = window.innerWidth < 481;
+
         return (
             <div class="modal fade" role="dialog" ref={this.ref} style={{"display" : "block"}}>
-            <div class="modal-dialog modal-dialog-centered" style={{
-                maxWidth : '50vw',
-                // minHeight : '20vh',
-            }}>
+            <ClickAwayListener onClickAway={this.close}>
+            <div class="modal-dialog modal-dialog-centered"
+                style={{maxWidth : mobile_1 ? mobile_2 ? mobile_3 ? '100vw' : '75vw' : '60vw' : '50vw'}}>
             <div class="modal-content">
 
                 <div style={title_style}>
@@ -189,7 +189,8 @@ class Comments extends React.Component {
                 </div>
                 </div>
 
-            </div></div></div>
+            </div></div></ClickAwayListener></div>
+            
         );
     }
   }

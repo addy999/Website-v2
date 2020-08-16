@@ -79,3 +79,33 @@
 .tag{
     font-size: 1.5em;
 }
+
+@media (max-width: 641px) {
+    .card {
+        max-width: 40vw;
+    }
+    .card-text {
+        font-size: 0.75em;
+    }
+    .card-group {
+        margin: 0 0 15vh 0;
+    }
+    .tech {
+        font-size: 0.75em;
+    }
+}
+
+@media (max-width: 481px) {
+    .card {
+        max-width: unset;
+    }
+    .card-text {
+        font-size: 0.9em;
+    }
+    .card-group {
+        margin: unset;
+    }
+    .tech {
+        font-size: 0.8em;
+    }
+}

@@ -16,6 +16,7 @@ class Card extends React.Component {
         showComments : false,
         showDialog : false,
         id : this.props.data.id,
+        commentCount : null,
       }
       this.card_id = React.createRef();
       this.comments_ref = React.createRef();
@@ -35,7 +36,10 @@ class Card extends React.Component {
 
     getCommentButton = () => {
       return (
-        // <Badge variant="dot" onClick={() => {this.setState({showComments : true})}} color="#96FFF2" style={{"cursor" : "pointer"}}>
+        // <Badge 
+        // badgeContent={this.state.commentCount}
+        // onClick={() => {this.setState({showComments : true})}} 
+        // style={{"cursor" : "pointer"}}>
         //   <Icon>mode_comment</Icon>
         // </Badge>
       <span className="footer-link material-icons" 
@@ -66,7 +70,7 @@ class Card extends React.Component {
           onMouseLeave={()=>this.card_id.current.style.opacity=0}>
 
           {/* Overlay only for desktop */}
-          <div className="overlay" ref={this.card_id} style={{"display" : window.innerWidth > 450 ? "block" : "none"}}>
+          <div className="overlay" ref={this.card_id} style={{"display" : window.innerWidth > 481 ? "block" : "none"}}>
             <p className="tag">{data.tag}</p>
             <Vote id={data.id} />
           </div>
@@ -75,8 +79,8 @@ class Card extends React.Component {
           <img className="card-img-top" 
           src={data.img ? data.img : placeholder} 
           alt="Card image"
-          onClick={() => window.location.href = dialog_link && window.innerWidth<450 ? dialog_link : "javascript:void(0);"}
-          style={{cursor :  window.innerWidth<450 ? "pointer" : "default"}}></img>
+          onClick={() => window.location.href = dialog_link && window.innerWidth<481 ? dialog_link : "javascript:void(0);"}
+          style={{cursor :  window.innerWidth<481 ? "pointer" : "default"}}></img>
 
           {/* Only click on body to open dialog. Cursor : pointer */}
           <div className="card-body" onClick={() => 
@@ -94,7 +98,7 @@ class Card extends React.Component {
            */}
           <div className="card-footer">
 
-              {window.innerWidth > 450 ? this.getCommentButton() : ""}
+              {window.innerWidth > 481 ? this.getCommentButton() : ""}
 
               {
                 data.tag.split(",").map( t=> <p className="footer-link tech">#{t.replace(/\s/g, '')}</p>)
@@ -105,7 +109,7 @@ class Card extends React.Component {
         </div>
         
         {/* Mobile only : render vote under card and add comment beside it  */}
-        {window.innerWidth < 450 ? <Vote id={data.id} 
+        {window.innerWidth < 481 ? <Vote id={data.id} 
         comment_button={this.getCommentButton}
         /> : ""}
 

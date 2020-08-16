@@ -54,7 +54,7 @@ class Vote extends React.Component {
 
   render() { 
 
-    const mobile = window.innerWidth < 450;
+    const mobile = window.innerWidth < 481;
 
     const thumb_style = {
       "font-size" :  mobile ? "1.75em" : "3em",

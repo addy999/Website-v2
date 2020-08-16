@@ -1,7 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Icon from '@material-ui/core/Icon';
+import { ClickAwayListener , Button, ButtonGroup, Icon } from '@material-ui/core';
 import $ from 'jquery';
 import { findDOMNode } from 'react-dom';
 import axios from 'axios';
@@ -53,10 +51,16 @@ class Dialog  extends React.Component {
     render() {
 
         const data = this.props.data;
+        const mobile_1 = window.innerWidth < 1025;
+        const mobile_2 = window.innerWidth < 641;
+        const mobile_3 = window.innerWidth < 481;
 
         return (
             <div id="dialog" class="modal fade" role="dialog" ref={this.ref}>
-                <div class="modal-dialog modal-dialog-centered" style={{maxWidth : '50vw'}}>
+                <ClickAwayListener onClickAway={this.close}>
+                <div class="modal-dialog modal-dialog-centered" 
+                style={{maxWidth : mobile_1 ? mobile_2 ? mobile_3 ? '100vw' : '75vw' : '60vw' : '50vw'}}
+                >
                     <div class="modal-content">
 
                         <div id="dialog-title">
@@ -91,7 +95,7 @@ class Dialog  extends React.Component {
 
                             {data.tldr ? 
                                  <>
-                                 <h4 className="info-head display-4 col">TL;DR</h4>
+                                 {/* <h4 className="info-head display-4 col">TL;DR</h4> */}
                                  <ul>{data.tldr.split(",").map(e => <li className="text display-4">{e}</li>)}</ul>
                                  </>:""
                             }   
@@ -124,6 +128,7 @@ class Dialog  extends React.Component {
 
                     </div>
                 </div>
+                </ClickAwayListener>
             </div>
         );
     }

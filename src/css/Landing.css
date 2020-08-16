@@ -65,13 +65,23 @@
   background-color: rgba(255,255,255,0.5);
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1281px) {
   .butt {
     max-width: unset;
   }
+  .btn {
+    margin: auto;
+  }
 }
 
-@media (max-width: 450px) {
+
+@media (max-width: 1025px) {
+  /* .butt {
+    max-width: unset;
+  } */
+}
+
+@media (max-width: 640px) {
   .btn {
     /* min-width: 20vw; */
     max-width: 15vw;
@@ -82,7 +92,7 @@
     /* padding-top: 2.5vh; */
   }
   .desc-text {
-    font-size: 0.9em;
+    font-size: 0.75em;
     max-width: unset;
   }
   #title {
@@ -90,13 +100,22 @@
     margin-top: -3vh;
   }
   #desc {
-    margin-top: -25vh;
+    margin-top: unset;
   }
   .scroll {
     margin-bottom : 150px;
   }
   .contact-img {
     max-height: 2vh;
+  }
+}
+
+@media (max-width: 450px) {
+  #desc {
+    margin-top: -25vh;
+  }
+  .desc-text {
+    font-size: 0.9em;
   }
 }
 
