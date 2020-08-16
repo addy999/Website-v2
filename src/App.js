@@ -13,7 +13,7 @@ class App extends React.Component {
 
     updateDimensions = () => {
         this.setState({ width: window.innerWidth, height: window.innerHeight });
-        window.location.href="";
+        // window.location.href="";
       };
 
     componentDidMount() {
