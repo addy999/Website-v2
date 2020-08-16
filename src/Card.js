@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import { Button, Badge } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
 import './css/card.css';
 import placeholder from './assests/placeholder.png';
@@ -35,12 +35,12 @@ class Card extends React.Component {
 
     getCommentButton = () => {
       return (
+        // <Badge variant="dot" onClick={() => {this.setState({showComments : true})}} color="#96FFF2" style={{"cursor" : "pointer"}}>
+        //   <Icon>mode_comment</Icon>
+        // </Badge>
       <span className="footer-link material-icons" 
       onClick={() => {this.setState({showComments : true})}} 
       style={{"color":"white", "cursor" : "pointer"}}>mode_comment</span>
-      // <Button className="footer-link" onClick={() => {this.setState({showComments : true})}}  style={{"color":"white", "cursor" : "pointer"}}>
-      //   <Icon>mode_comment</Icon>
-      // </Button>
       )
     }
 
@@ -48,10 +48,6 @@ class Card extends React.Component {
 
       const {data} = this.props;
       const dialog_link = data.link;
-
-      let tech = data.tech.split(",");
-      tech.splice(3) // Only keep the first 3 tags due to space
-
       let desc = data.description; 
       
       // Parse date string
@@ -101,7 +97,7 @@ class Card extends React.Component {
               {window.innerWidth > 450 ? this.getCommentButton() : ""}
 
               {
-                tech.map( t=> <p className="footer-link tech">#{t.replace(/\s/g, '')}</p>)
+                data.tag.split(",").map( t=> <p className="footer-link tech">#{t.replace(/\s/g, '')}</p>)
               }
 
             </div>

@@ -103,21 +103,23 @@ class Dialog  extends React.Component {
                         </div>
 
                         <div className="row" style={{padding: '2vw', margin : "auto"}}>
-                            <ButtonGroup variant="contained"aria-label="contained primary button group">
+                            {/* <ButtonGroup aria-label="primary button group"> */}
                                 {data.info ? 
                                 <Button 
-                                variant="contained"
+                                // variant="contained"
                                 className="dialog-btns" 
                                 onClick={() => window.location.href=data.info}
+                                style={{color:"white", marginRight: '5vw'}}
                                 endIcon={<Icon>link</Icon>}>Learn more</Button>: ""}
 
                                 {data.link ? 
                                 <Button 
-                                variant="contained"
+                                // variant="contained"
                                 className="dialog-btns"  
                                 onClick={() => window.location.href=data.link}
+                                style={{color:"white"}}
                                 endIcon={<Icon>link</Icon>}>Visit</Button>: ""}
-                            </ButtonGroup>
+                            {/* </ButtonGroup> */}
                         </div>
 
                     </div>

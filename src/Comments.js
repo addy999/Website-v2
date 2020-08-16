@@ -179,10 +179,10 @@ class Comments extends React.Component {
 
 
                     <Button 
-                    variant="contained"
+                    // variant="contained"
                     className="col"  
                     ref={this.submit_btn}
-                    style={{maxWidth : "fit-content", padding:"10px", margin: 'auto', height : "45px" }}
+                    style={{maxWidth : "fit-content", padding:"10px", margin: 'auto', height : "45px", color:"white" }}
                     onClick={this.submit}
                     endIcon={<Icon>send</Icon>}>Submit</Button>
 
