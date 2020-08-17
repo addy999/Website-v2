@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const pino = require('express-pino-logger')();
 const votes = require('./votes');
+const email = require('./email');
 const comment_db = require('./comments');
 const moment = require('moment');
 
@@ -88,6 +89,10 @@ app.post('/api/submitComment', (req, res) => {
   // Send refreshed comments back
   res.setHeader('Content-Type', 'application/json');
   res.send(send_back);
+
+  // Notify
+  email.sendMail(comment);
+
 })
 
 
