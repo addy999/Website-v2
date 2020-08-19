@@ -31,17 +31,23 @@ class Dialog  extends React.Component {
         $('html')[0].style.overflow="hidden";        
     }
 
-    renderSlide = (header, text, img, imgCaption) => {
+    renderSlide = (header, text, img, imgCaption, tldr) => {
         return (
-            <div className="row slide">   
+            <div className="row slide" style={{
+                marginLeft: tldr ? "auto" : 0,
+                marginRight: tldr ? "auto" : 0,
+            }}>   
             {text ?
                 <div className="col">
-                <h4 className="info-head display-4">{header}</h4>                       
-                <p className="text">{text}</p>
+                    <h4 className="info-head display-4">{header}</h4>                       
+                    <p className="text">{text}</p>
                 </div>: ""}
             {img ? 
             <div class="col">
-                <img src={img} className="dialog-img"></img>
+                <img src={img} className="dialog-img" style={{
+                    transform : tldr ? "unset" : "",
+                    // maxWidth : text ? "100%" : ""
+                    }}></img>
                 {imgCaption ? <p className="text-center" style={{padding: '10px'}}>{imgCaption}</p> : ""}
             </div> : ""}
             </div>
@@ -100,9 +106,9 @@ class Dialog  extends React.Component {
                                  </>:""
                             }   
                             
-                            {this.renderSlide("The Challenge", data.p1, data.img1, data.img1Caption)}
-                            {this.renderSlide("The Process", data.p2, data.img2, data.img2Caption)}
-                            {this.renderSlide("The Solution", data.p3, data.img3, data.img3Caption)}
+                            {this.renderSlide("The Challenge", data.p1, data.img1, data.img1Caption, data.tldr)}
+                            {this.renderSlide("The Process", data.p2, data.img2, data.img2Caption, data.tldr)}
+                            {this.renderSlide("The Solution", data.p3, data.img3, data.img3Caption, data.tldr)}
 
                         </div>
 
