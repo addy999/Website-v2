@@ -1,6 +1,6 @@
 const Database = require('better-sqlite3');
 const moment = require('moment');
-const COMMENTS_DB_PATH = './comments.db';
+const COMMENTS_DB_PATH = './var/data/comments.db';
 
 function connect() {  
     return new Database(COMMENTS_DB_PATH, { verbose: console.log });
