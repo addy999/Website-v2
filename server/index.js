@@ -91,7 +91,7 @@ app.post('/api/submitComment', (req, res) => {
   res.send(send_back);
 
   // Notify
-  email.sendMail(comment);
+  // email.sendMail(comment);
 
 })
 
