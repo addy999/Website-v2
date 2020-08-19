@@ -36,6 +36,7 @@ class Dialog  extends React.Component {
             <div className="row slide" style={{
                 marginLeft: tldr ? "auto" : 0,
                 marginRight: tldr ? "auto" : 0,
+                display : (text || img) ? "" : "none"
             }}>   
             {text ?
                 <div className="col">
@@ -45,9 +46,7 @@ class Dialog  extends React.Component {
             {img ? 
             <div class="col">
                 <img src={img} className="dialog-img" style={{
-                    transform : tldr ? "unset" : "",
-                    // maxWidth : text ? "100%" : ""
-                    }}></img>
+                    transform : tldr ? "unset" : ""}}></img>
                 {imgCaption ? <p className="text-center" style={{padding: '10px'}}>{imgCaption}</p> : ""}
             </div> : ""}
             </div>
