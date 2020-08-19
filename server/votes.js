@@ -1,6 +1,6 @@
 const Database = require('better-sqlite3');
 const moment = require('moment');
-const VOTES_DB_PATH = './var/data/votes.db';
+const VOTES_DB_PATH = '/var/data/votes.db';
 
 function connect() {  
     return new Database(VOTES_DB_PATH, { verbose: console.log });
