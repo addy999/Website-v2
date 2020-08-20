@@ -46,8 +46,7 @@ class Dialog  extends React.Component {
             {img ? 
             <div class="col">
                 <img src={img} className="dialog-img" style={{
-                    // transform : text && mobile_2 ? "unset" : "",
-                    transform : mobile_2 ? text ? "" : "" : text ? "translateY(-50%)" : "",
+                    transform : mobile_2 ? text ? "" : "" : text ? imgCaption ? "" : "translateY(-50%)" : "",
                     maxWidth : mobile_2 ? "70vw" : ""
                     }}></img>
                 {imgCaption ? <p className="text-center" style={{padding: '10px'}}>{imgCaption}</p> : ""}
