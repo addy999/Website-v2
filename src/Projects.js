@@ -28,6 +28,11 @@ class Projects extends React.Component {
 
     parseData = () => {
 
+      // Filter
+      this.setState({
+        data : this.state.data.filter(row => JSON.parse(row.post.toLowerCase()))
+      });
+
       // Get all the types of work first
       this.setState({
         types : [...new Set(this.state.data.map((row) => row.type))]
