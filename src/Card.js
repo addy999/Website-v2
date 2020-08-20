@@ -7,6 +7,7 @@ import moment from 'moment/moment';
 import Vote from './vote';
 import Comments from './Comments';
 import Dialog from './Dialog';
+import utils from './utils';
 
 class Card extends React.Component {
 
@@ -17,6 +18,7 @@ class Card extends React.Component {
         showDialog : false,
         id : this.props.data.id,
         commentCount : null,
+        comments : null,
       }
       this.card_id = React.createRef();
       this.comments_ref = React.createRef();
@@ -34,17 +36,35 @@ class Card extends React.Component {
       })
     }
 
+    loadComments = () => {
+
+      fetch(`/api/getComments?id=${encodeURIComponent(this.state.id)}`)
+      .then(res => res.json())
+      .then(console.log)
+      // .then(res => this.setState({
+      //     comments : utils.objEmpty(res) ? null : utils.sortComments(res)
+      // }))
+      // .then(this.setState({
+      //   commentCount : this.comments ? this.state.comments.length : 0
+      // }))
+    }
+
+    componentDidMount() {
+      this.loadComments();
+    }
+
     getCommentButton = () => {
       return (
-        // <Badge 
-        // badgeContent={this.state.commentCount}
-        // onClick={() => {this.setState({showComments : true})}} 
-        // style={{"cursor" : "pointer"}}>
-        //   <Icon>mode_comment</Icon>
-        // </Badge>
-      <span className="footer-link material-icons" 
-      onClick={() => {this.setState({showComments : true})}} 
-      style={{"color":"white", "cursor" : "pointer"}}>mode_comment</span>
+        <Badge 
+        className="footer-link"
+        badgeContent={this.state.commentCount}
+        onClick={() => {this.setState({showComments : true})}} 
+        style={{"cursor" : "pointer"}}>
+          <Icon>mode_comment</Icon>
+        </Badge>
+      // <span className="footer-link material-icons" 
+      // onClick={() => {this.setState({showComments : true})}} 
+      // style={{"color":"white", "cursor" : "pointer"}}>mode_comment</span>
       )
     }
 
@@ -114,7 +134,7 @@ class Card extends React.Component {
         /> : ""}
 
         {/* Render comment dialog on top of everything - only shows up if clickec on comment button*/}
-        {this.state.showComments ? <Comments id={this.state.id} closeLink={this.closeComments}/> : "" }
+        {this.state.showComments ? <Comments id={this.state.id} comments={this.state.comments} closeLink={this.closeComments}/> : "" }
 
         {/* Render dialog on top of everything - only shows up if clicked on card body*/}
         {this.state.showDialog ? <Dialog dateStr = {date} data={data} closeLink={this.closeDialog} /> : "" }

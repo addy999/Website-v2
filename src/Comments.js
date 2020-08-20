@@ -1,5 +1,6 @@
 import React from 'react';
 import Comment from './Comment';
+import utils from './utils';
 import { ClickAwayListener , Button, TextField, Icon } from '@material-ui/core';
 import $ from 'jquery';
 import { findDOMNode } from 'react-dom';
@@ -14,7 +15,7 @@ class Comments extends React.Component {
       this.state = {
           id : props.id,
           submitMouse : false,
-          comments : null,
+        //   comments : null,
           closeMouse : false,
           scroll_to_bottom : true,
       }
@@ -33,38 +34,10 @@ class Comments extends React.Component {
         console.log("CLOSED");
     }
 
-    objEmpty = (obj) => {
-        return Object.keys(obj).length === 0;
-    }
-
-    sortComments = (cmnts) => {
-        
-        var ordered = {};
-        if (this.objEmpty(cmnts)) return null
-
-        Object.keys(cmnts).sort().forEach(function(key) {
-            ordered[key] = cmnts[key];
-        });
-        return ordered;
-    }
-
-    loadComments = () => {
-
-        fetch(`/api/getComments?id=${encodeURIComponent(this.state.id)}`)
-        .then(res => res.json())
-        // .then(console.log)
-        .then(res => this.setState({
-            comments : this.objEmpty(res) ? null : this.sortComments(res)
-        }))
-        // .then(
-        //     this.props.updateCount(this.state.comments ? this.state.comments.length : 0)
-        // )
-    }
-
     componentDidMount() {   
         $(findDOMNode(this.ref.current)).modal("show");
         $('html')[0].style.overflow="hidden";
-        this.loadComments();          
+        // this.loadComments();          
         
     }
 
@@ -79,7 +52,7 @@ class Comments extends React.Component {
 
             // Reload comments 
             this.setState({
-                comments : this.objEmpty(res.data) ? null : this.sortComments(res.data)
+                comments : utils.objEmpty(res.data) ? null : this.sortComments(res.data)
             })
         })
         .catch(error => {
@@ -105,7 +78,7 @@ class Comments extends React.Component {
     
     render() {
 
-        const cmnts = this.state.comments;
+        const cmnts = this.props.comments;
 
         const title_style = {
             "font-size" : "2em",
@@ -116,7 +89,6 @@ class Comments extends React.Component {
             "padding" : "2vw",
             "overflow": "auto",
             maxHeight : "50vh",
-            // paddingBottom : 0,
         }
         const input_style = {
             margin : 0,
@@ -154,7 +126,7 @@ class Comments extends React.Component {
                     comment={t[1]} 
                     last_comment={i == Object.keys(cmnts).length-1 ? true : false}
                     scroll_to = {this.state.scroll_to_bottom}/>) : ""}
-                    <p style={{color: 'grey', "display" : cmnts ? this.objEmpty(cmnts) ? "block" : "none" : "block"}}>Be the first comment!</p>
+                    <p style={{color: 'grey', "display" : cmnts ? utils.objEmpty(cmnts) ? "block" : "none" : "block"}}>Be the first comment!</p>
 
                 </div>
                 <div class="modal-footer" style={{padding : 0, borderColor : '#96FFF2'}}>
