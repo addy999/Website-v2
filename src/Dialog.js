@@ -32,6 +32,10 @@ class Dialog  extends React.Component {
     }
 
     renderSlide = (header, text, img, imgCaption, tldr, mobile_2) => {
+        const embed_style = {
+            transform : mobile_2 ? text ? "" : "" : text ? imgCaption ? "" : "translateY(-50%)" : "",
+            maxWidth : mobile_2 ? "70vw" : ""
+        }
         return (
             <div className="row slide" style={{
                 marginLeft: tldr ? "auto" : 0,
@@ -45,10 +49,9 @@ class Dialog  extends React.Component {
                 </div>: ""}
             {img ? 
             <div class="col">
-                <img src={img} className="dialog-img" style={{
-                    transform : mobile_2 ? text ? "" : "" : text ? imgCaption ? "" : "translateY(-50%)" : "",
-                    maxWidth : mobile_2 ? "70vw" : ""
-                    }}></img>
+                {img.includes("drive.google.com") ? 
+                <iframe src={img} style={{...embed_style, ...{width:!mobile_2?"40vw":"", height:!mobile_2?"50vh":""}}} allowFullScreen></iframe> 
+                : <img src={img} className="dialog-img" style={embed_style}></img>}
                 {imgCaption ? <p className="text-center" style={{padding: '10px'}}>{imgCaption}</p> : ""}
             </div> : ""}
             </div>
