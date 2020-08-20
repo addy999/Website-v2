@@ -31,7 +31,7 @@ class Dialog  extends React.Component {
         $('html')[0].style.overflow="hidden";        
     }
 
-    renderSlide = (header, text, img, imgCaption, tldr) => {
+    renderSlide = (header, text, img, imgCaption, tldr, mobile_2) => {
         return (
             <div className="row slide" style={{
                 marginLeft: tldr ? "auto" : 0,
@@ -46,7 +46,10 @@ class Dialog  extends React.Component {
             {img ? 
             <div class="col">
                 <img src={img} className="dialog-img" style={{
-                    transform : tldr ? "unset" : ""}}></img>
+                    // transform : text && mobile_2 ? "unset" : "",
+                    transform : mobile_2 ? text ? "" : "" : text ? "translateY(-50%)" : "",
+                    maxWidth : mobile_2 ? "70vw" : ""
+                    }}></img>
                 {imgCaption ? <p className="text-center" style={{padding: '10px'}}>{imgCaption}</p> : ""}
             </div> : ""}
             </div>
@@ -105,9 +108,9 @@ class Dialog  extends React.Component {
                                  </>:""
                             }   
                             
-                            {this.renderSlide("The Challenge", data.p1, data.img1, data.img1Caption, data.tldr)}
-                            {this.renderSlide("The Process", data.p2, data.img2, data.img2Caption, data.tldr)}
-                            {this.renderSlide("The Solution", data.p3, data.img3, data.img3Caption, data.tldr)}
+                            {this.renderSlide("The Challenge", data.p1, data.img1, data.img1Caption, data.tldr, mobile_2)}
+                            {this.renderSlide("The Process", data.p2, data.img2, data.img2Caption, data.tldr, mobile_2)}
+                            {this.renderSlide("The Solution", data.p3, data.img3, data.img3Caption, data.tldr, mobile_2)}
 
                         </div>
 
