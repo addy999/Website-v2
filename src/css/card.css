@@ -63,7 +63,7 @@
     /* top:50%;
     transform: translateY(-50%);
     position: relative; */
-    display:table-cell!important;
+    display:table-cell;
     vertical-align:middle;
 }
 
@@ -78,6 +78,10 @@
 }
 .tag{
     font-size: 1.5em;
+}
+
+.MuiBadge-root {
+    padding: unset!important;
 }
 
 @media (max-width: 641px) {

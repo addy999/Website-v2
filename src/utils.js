@@ -15,5 +15,5 @@ function sortComments(cmnts) {
 
 module.exports = {
     sortComments: sortComments,
-    objEmpty : this.objEmpty
+    objEmpty : objEmpty
 }

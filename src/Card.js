@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button, Badge } from '@material-ui/core';
-import Icon from '@material-ui/core/Icon';
+import { Button, Badge, Icon } from '@material-ui/core';
 import './css/card.css';
 import placeholder from './assests/placeholder.png';
 import moment from 'moment/moment';
@@ -40,28 +39,35 @@ class Card extends React.Component {
 
       fetch(`/api/getComments?id=${encodeURIComponent(this.state.id)}`)
       .then(res => res.json())
-      .then(console.log)
-      // .then(res => this.setState({
-      //     comments : utils.objEmpty(res) ? null : utils.sortComments(res)
-      // }))
-      // .then(this.setState({
-      //   commentCount : this.comments ? this.state.comments.length : 0
-      // }))
+      .then(res => this.setState({
+          comments : utils.objEmpty(res) ? null : utils.sortComments(res)
+      }))
+      .then(this.setState({
+        commentCount : this.comments ? this.state.comments.length : 0
+      }))
     }
 
     componentDidMount() {
       this.loadComments();
     }
 
-    getCommentButton = () => {
+    getCommentButton = (mobile = false) => {
       return (
-        <Badge 
-        className="footer-link"
-        badgeContent={this.state.commentCount}
-        onClick={() => {this.setState({showComments : true})}} 
-        style={{"cursor" : "pointer"}}>
-          <Icon>mode_comment</Icon>
-        </Badge>
+          <Badge  
+          className="footer-link"
+          anchorOrigin={{
+            vertical: 'top',
+            horizontal: mobile ? 'left' : "right",
+          }}
+          badgeContent={this.state.commentCount}
+          showZero
+          color="primary"
+          onClick={() => {this.setState({showComments : true})}} 
+          style={{
+            "cursor" : "pointer",
+            transform: mobile ? "" : "translateY(50%)"}}>
+            <Icon>mode_comment</Icon>
+          </Badge >
       // <span className="footer-link material-icons" 
       // onClick={() => {this.setState({showComments : true})}} 
       // style={{"color":"white", "cursor" : "pointer"}}>mode_comment</span>
@@ -72,6 +78,7 @@ class Card extends React.Component {
 
       const {data} = this.props;
       const dialog_link = data.link;
+      const mobile_2 = window.innerWidth < 641;
       let desc = data.description; 
       
       // Parse date string
@@ -130,7 +137,7 @@ class Card extends React.Component {
         
         {/* Mobile only : render vote under card and add comment beside it  */}
         {window.innerWidth < 481 ? <Vote id={data.id} 
-        comment_button={this.getCommentButton}
+        comment_button={this.getCommentButton(true)}
         /> : ""}
 
         {/* Render comment dialog on top of everything - only shows up if clickec on comment button*/}

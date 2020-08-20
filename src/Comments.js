@@ -52,7 +52,7 @@ class Comments extends React.Component {
 
             // Reload comments 
             this.setState({
-                comments : utils.objEmpty(res.data) ? null : this.sortComments(res.data)
+                comments : utils.objEmpty(res.data) ? null : utils.sortComments(res.data)
             })
         })
         .catch(error => {

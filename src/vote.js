@@ -61,7 +61,7 @@ class Vote extends React.Component {
       color : this.state.clicked ? "#96FFF2" : "white"
     }
 
-    const comment_button = this.props.comment_button ? this.props.comment_button() : "";
+    const comment_button = this.props.comment_button;
     // Fix for mobile
     if(comment_button) {
       comment_button.props.style.fontSize="1.75em";
