@@ -43,7 +43,7 @@ class Card extends React.Component {
           comments : utils.objEmpty(res) ? null : utils.sortComments(res)
       }))
       .then(this.setState({
-        commentCount : this.comments ? this.state.comments.length : 0
+        commentCount : this.comments ? Object.keys(this.state.comments).length : 0
       }))
     }
 
