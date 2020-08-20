@@ -71,7 +71,7 @@ class Card extends React.Component {
 
           {/* Overlay only for desktop */}
           <div className="overlay" ref={this.card_id} style={{"display" : window.innerWidth > 481 ? "block" : "none"}}>
-            <p className="tag">{data.tag}</p>
+            {/* <p className="tag">{data.tag}</p> */}
             <Vote id={data.id} />
           </div>
 
