@@ -43,7 +43,7 @@ class Card extends React.Component {
           comments : utils.objEmpty(res) ? null : utils.sortComments(res)
       }))
       .then(this.setState({
-        commentCount : this.comments ? Object.keys(this.state.comments).length : 0
+        commentCount : this.state.comments ? Object.keys(this.state.comments).length : 0
       }))
     }
 
@@ -60,7 +60,7 @@ class Card extends React.Component {
             horizontal: mobile ? 'left' : "right",
           }}
           badgeContent={this.state.commentCount}
-          showZero
+          // showZero
           color="primary"
           onClick={() => {this.setState({showComments : true})}} 
           style={{
