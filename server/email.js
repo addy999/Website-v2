@@ -1,10 +1,20 @@
 var nodemailer = require('nodemailer');
 
+// var transporter = nodemailer.createTransport({
+//   service: 'gmail',
+//   auth: {
+//     user: 'jude.addy999@gmail.com',
+//     pass: process.env.EMAIL_PASS
+//   }
+// });
+
 var transporter = nodemailer.createTransport({
-  service: 'gmail',
+  host: 'smtp.gmail.com',
+  port: 465,
+  secure: true, // use SSL
   auth: {
-    user: 'jude.addy999@gmail.com',
-    pass: process.env.EMAIL_PASS
+      user: 'jude.addy999@gmail.com',
+      pass: process.env.EMAIL_PASS
   }
 });
 

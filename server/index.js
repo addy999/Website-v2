@@ -73,6 +73,8 @@ app.get('/api/getComments', (req, res) => {
 
   const id = String(req.query.id);
   const comments = comment_db.getComments(id);
+
+  // const comments = [{"dt":"1234", "comment":"Gotem"}];
   
   res.setHeader('Content-Type', 'application/json');
   res.send(parseComments(comments));
@@ -83,15 +85,15 @@ app.post('/api/submitComment', (req, res) => {
   const id = String(req.body.id);
   const comment = String(req.body.comment);
 
+  // Notify
+  email.sendMail(comment);
+
   comment_db.addComment(id, comment);
   let send_back = parseComments(comment_db.getComments(id));
   
   // Send refreshed comments back
   res.setHeader('Content-Type', 'application/json');
-  res.send(send_back);
-
-  // Notify
-  // email.sendMail(comment);
+  res.send(send_back); 
 
 })
 
