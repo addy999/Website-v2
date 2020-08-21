@@ -15,7 +15,7 @@ class Comments extends React.Component {
       this.state = {
           id : props.id,
           submitMouse : false,
-        //   comments : null,
+          comments : null,
           closeMouse : false,
           scroll_to_bottom : true,
       }
@@ -25,20 +25,26 @@ class Comments extends React.Component {
       this.lastComment = React.createRef();
     }
 
+    loadComments = () => {
+
+        fetch(`/api/getComments?id=${encodeURIComponent(this.state.id)}`)
+        .then(res => res.json())
+        .then(res => this.setState({
+            comments : utils.objEmpty(res) ? null : utils.sortComments(res)
+        }))
+    }
+
     close = () => {
-        // this.ref.current.style.display="none";
 
         this.props.closeLink();
         $(findDOMNode(this.ref.current)).modal("hide");
         $('html')[0].style.overflow="";
-        console.log("CLOSED");
     }
 
     componentDidMount() {   
         $(findDOMNode(this.ref.current)).modal("show");
         $('html')[0].style.overflow="hidden";
-        // this.loadComments();          
-        
+        this.loadComments();     
     }
 
     recordComment = (comment) => {
@@ -71,14 +77,11 @@ class Comments extends React.Component {
 
         // Clear 
         this.input_ref.current.value = ''
-
-        // Scroll to bottom
-        // this.scrollToBottom();
     }
     
     render() {
 
-        const cmnts = this.props.comments;
+        const cmnts = this.state.comments;
 
         const title_style = {
             "font-size" : "2em",

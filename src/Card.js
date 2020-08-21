@@ -16,8 +16,6 @@ class Card extends React.Component {
         showComments : false,
         showDialog : false,
         id : this.props.data.id,
-        commentCount : null,
-        comments : null,
       }
       this.card_id = React.createRef();
       this.comments_ref = React.createRef();
@@ -35,42 +33,26 @@ class Card extends React.Component {
       })
     }
 
-    loadComments = () => {
-
-      fetch(`/api/getComments?id=${encodeURIComponent(this.state.id)}`)
-      .then(res => res.json())
-      .then(res => this.setState({
-          comments : utils.objEmpty(res) ? null : utils.sortComments(res)
-      }))
-      .then(this.setState({
-        commentCount : this.state.comments ? Object.keys(this.state.comments).length : 0
-      }))
-    }
-
-    componentDidMount() {
-      this.loadComments();
-    }
-
     getCommentButton = (mobile = false) => {
       return (
-          <Badge  
-          className="footer-link"
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: mobile ? 'left' : "right",
-          }}
-          badgeContent={this.state.commentCount}
-          // showZero
-          color="primary"
-          onClick={() => {this.setState({showComments : true})}} 
-          style={{
-            "cursor" : "pointer",
-            transform: mobile ? "" : "translateY(50%)"}}>
-            <Icon>mode_comment</Icon>
-          </Badge >
-      // <span className="footer-link material-icons" 
-      // onClick={() => {this.setState({showComments : true})}} 
-      // style={{"color":"white", "cursor" : "pointer"}}>mode_comment</span>
+          // <Badge  
+          // className="footer-link"
+          // anchorOrigin={{
+          //   vertical: 'top',
+          //   horizontal: mobile ? 'left' : "right",
+          // }}
+          // badgeContent={this.state.comments ? Object.keys(this.state.comments).length : 0}
+          // // showZero
+          // color="primary"
+          // onClick={() => {this.setState({showComments : true})}} 
+          // style={{
+          //   "cursor" : "pointer",
+          //   transform: mobile ? "" : "translateY(50%)"}}>
+          //   <Icon>mode_comment</Icon>
+          // </Badge >
+      <span className="footer-link material-icons" 
+      onClick={() => {this.setState({showComments : true})}} 
+      style={{"color":"white", "cursor" : "pointer"}}>mode_comment</span>
       )
     }
 
@@ -140,8 +122,8 @@ class Card extends React.Component {
         comment_button={this.getCommentButton(true)}
         /> : ""}
 
-        {/* Render comment dialog on top of everything - only shows up if clickec on comment button*/}
-        {this.state.showComments ? <Comments id={this.state.id} comments={this.state.comments} closeLink={this.closeComments}/> : "" }
+        {/* Render comment dialog on top of everything - only shows up if clicked on comment button*/}
+        {this.state.showComments ? <Comments id={this.state.id} closeLink={this.closeComments}/> : "" }
 
         {/* Render dialog on top of everything - only shows up if clicked on card body*/}
         {this.state.showDialog ? <Dialog dateStr = {date} data={data} closeLink={this.closeDialog} /> : "" }
