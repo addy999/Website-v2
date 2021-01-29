@@ -1,4 +1,4 @@
-# Personal Website revamped
+# Personal website revamped
 I used this project to teach myself React, and since then I've come a far way in developing with it. So, excuse the awkward mobile responsiveness and clunky css!
 
 ## Resources used: 
